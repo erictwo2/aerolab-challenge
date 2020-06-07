@@ -1,6 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <app-header></app-header>
+    <the-header></the-header>
+    <the-subheader title="Electronics"></the-subheader>
     <div class="container">
       <div>
         <logo />
@@ -34,12 +35,14 @@
 <script lang="ts">
 import Vue from 'vue'
 import Logo from '~/components/Logo.vue'
-import AppHeader from '~/components/AppHeader.vue'
+import TheHeader from '~/layouts/the-header.vue'
+import TheSubheader from '~/layouts/the-subheader.vue'
 
 export default Vue.extend({
   components: {
     'logo': Logo,
-    'app-header' : AppHeader
+    'the-header' : TheHeader,
+    'the-subheader' : TheSubheader,
   }
 })
 </script>
