@@ -2,6 +2,7 @@
   <div class="flex flex-col min-h-screen">
     <the-header></the-header>
     <the-subheader title="Electronics"></the-subheader>
+    <product-filter></product-filter>
     <div class="container">
       <div>
         <logo />
@@ -37,12 +38,14 @@ import Vue from 'vue'
 import Logo from '~/components/Logo.vue'
 import TheHeader from '~/layouts/the-header.vue'
 import TheSubheader from '~/layouts/the-subheader.vue'
+import ProductFilter from '~/components/product/product-filter.vue'
 
 export default Vue.extend({
   components: {
     'logo': Logo,
     'the-header' : TheHeader,
     'the-subheader' : TheSubheader,
+    'product-filter' : ProductFilter
   }
 })
 </script>
