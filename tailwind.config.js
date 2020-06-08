@@ -10,6 +10,14 @@ module.exports = {
       height: theme => ({
         "80": "412px"
       }),
+      colors: {
+        primary: {
+          text: '#616161'
+        },
+        secondary: {
+          text: '#a3a3a3'
+        }
+      },
     },
   },
   variants: {},
