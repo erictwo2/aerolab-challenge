@@ -1,6 +1,6 @@
 <template>
   <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
-    <article class="overflow-hidden rounded-sm shadow-md">
+    <article class="overflow-hidden rounded-sm shadow-md border border-gray-200">
       <div class="relative mt-3 mx-3">
         <button class="absolute top-0 right-0">
           <img class="" src="buy-blue.svg">
