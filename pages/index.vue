@@ -2,7 +2,7 @@
   <div class="flex flex-col min-h-screen">
     <the-header></the-header>
     <the-subheader title="Electronics"></the-subheader>
-    <div class="container mx-auto px-4 mb-10 md:px-12">
+    <div class="container mx-auto px-4 mb-8 md:px-12">
       <product-filter></product-filter>
       <div class="border-b mt-6"></div>
     </div>
