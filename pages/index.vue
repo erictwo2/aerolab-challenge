@@ -3,7 +3,7 @@
     <the-header></the-header>
     <the-subheader title="Electronics"></the-subheader>
     <div class="container mx-auto px-4 mb-8 md:px-12">
-      <product-filter></product-filter>
+      <product-filter renderFilters="TRUE"></product-filter>
       <div class="border-b mt-6"></div>
     </div>
     <div class="container mx-auto px-4 md:px-12">
@@ -25,6 +25,10 @@
         <product-card></product-card>
         <product-card></product-card>
       </div>
+    </div>
+    <div class="container mx-auto px-4 mb-20 md:px-12">
+      <product-filter></product-filter>
+      <div class="border-b mt-6"></div>
     </div>
   </div>
 </template>
