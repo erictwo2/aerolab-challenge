@@ -1,12 +1,14 @@
 <template>
   <div class="flex flex-wrap md:flex-no-wrap items-center justify-between mx-auto mt-16">
-    <div class="flex items-center">
+    <div class="flex flex-no-wrap items-center">
       <span class="text-primary-text text-2xl font-normal tracking-tight mr-3">16 of 32 products</span>
-      <div class="border-l mx-6 h-12"></div>
-      <span class="text-secondary-text text-2xl font-normal tracking-tight mr-3">Sort by:</span>
-      <product-filter-button label="Most recent"></product-filter-button>
-      <product-filter-button label="Lowest price"></product-filter-button>
-      <product-filter-button label="Highest price"></product-filter-button>
+      <div v-if="renderFilters" class="flex flex-no-wrap items-center">
+        <div class="border-l w-1 mx-6 h-12"></div>
+        <span class="text-secondary-text text-2xl font-normal tracking-tight mr-3">Sort by:</span>
+        <product-filter-button label="Most recent"></product-filter-button>
+        <product-filter-button label="Lowest price"></product-filter-button>
+        <product-filter-button label="Highest price"></product-filter-button>
+      </div>
     </div>
     <div class="flex items-center">
       <button class="mr-3">
@@ -24,6 +26,13 @@ import Vue from 'vue'
 import ProductFilterButton from '~/components/product/product-filter-button.vue'
 
 export default Vue.extend({
+  name: 'product-filter',
+  props: {
+    renderFilters: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     'product-filter-button': ProductFilterButton
   }
