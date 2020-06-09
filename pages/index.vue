@@ -28,7 +28,7 @@ import TheHeader from '@/layouts/the-header.vue'
 import TheSubheader from '@/layouts/the-subheader.vue'
 import ProductFilter from '@/components/product/product-filter.vue'
 import ProductCard from '@/components/product/product-card.vue'
-import { Product } from '@/middleware/models/product'
+import { Product } from '@/models/product'
 import { getModule } from 'vuex-module-decorators'
 import ProductModule from '@/store/modules/product-module'
 

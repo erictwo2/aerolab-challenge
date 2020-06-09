@@ -1,6 +1,6 @@
 import { mount, Wrapper } from '@vue/test-utils'
-import { Product } from '~/middleware/models/product';
-import ProductCard from "~/components/product/product-card.vue";
+import { Product } from '@/models/product';
+import ProductCard from "@/components/product/product-card.vue";
 
 describe('Product Card', () => {
 

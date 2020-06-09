@@ -1,7 +1,7 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 
-import { Product } from "@/middleware/models/product";
-import { ProductService } from "@/middleware/services/product-service";
+import { Product } from "@/models/product";
+import { ProductService } from "@/services/product-service";
 import { store } from "..";
 
 @Module({ name: 'productModule', store: store, dynamic: true})

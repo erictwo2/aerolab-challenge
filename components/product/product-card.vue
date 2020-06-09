@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Product } from '@/middleware/models/product'
+import { Product } from '@/models/product'
 
 @Component
 export default class ProductCard extends Vue {
