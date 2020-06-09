@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ProductFilterButton from '~/components/product/product-filter-button.vue'
+import ProductFilterButton from '~/components/products/product-filter-button.vue'
 
 export default Vue.extend({
   name: 'product-filter',
