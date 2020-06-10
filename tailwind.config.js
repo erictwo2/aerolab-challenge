@@ -12,11 +12,12 @@ module.exports = {
       }),
       colors: {
         primary: {
-          text: '#616161'
+          font: '#616161'
         },
         secondary: {
-          text: '#a3a3a3'
-        }
+          font: '#a3a3a3'
+        },
+        active: '#25bbf1'
       },
     },
   },
