@@ -46,4 +46,18 @@ describe('Product Card', () => {
     expect(productImage.attributes('src')).toBe(product.img.url);
   })
 
+  test('hover is true, product cost should be displayed', async() => {
+    await wrapper.setData({ hover: true });
+    const productCost = wrapper.find('#product_cost');
+    expect(productCost.exists()).toBeTruthy();
+    expect(parseInt(productCost.text())).toBe(product.cost);
+  })
+
+  test('hover is true, redeem now button should be displayed', async() => {
+    await wrapper.setData({ hover: true });
+    const productRedeem = wrapper.find('#product_redeem');
+    expect(productRedeem.exists()).toBeTruthy();
+    expect(productRedeem.text()).toBe("Redeem now");
+  })
+  
 })
