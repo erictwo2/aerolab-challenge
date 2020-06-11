@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <the-header></the-header>
+    <the-header>
+      <user-points></user-points>
+    </the-header>
     <the-subheader title="Electronics"></the-subheader>
     <div class="container mx-auto px-4 mb-8 md:px-12">
       <product-filter v-bind:renderFilters="true"></product-filter>
@@ -28,16 +30,18 @@ import TheHeader from '@/layouts/the-header.vue'
 import TheSubheader from '@/layouts/the-subheader.vue'
 import ProductFilter from '@/components/products/product-filter.vue'
 import ProductCard from '@/components/products/product-card.vue'
+import UserPoints from '@/components/user/user-points.vue'
 import { Product } from '@/models/product'
 import { getModule } from 'vuex-module-decorators'
 import ProductModule from '@/store/modules/product-module'
 
 @Component({
   components: {
-    'the-header' : TheHeader,
-    'the-subheader' : TheSubheader,
-    'product-filter' : ProductFilter,
-    'product-card' : ProductCard
+    'the-header': TheHeader,
+    'the-subheader': TheSubheader,
+    'product-filter': ProductFilter,
+    'product-card': ProductCard,
+    'user-points': UserPoints
   }
 })
 export default class ProductList extends Vue {
