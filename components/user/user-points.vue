@@ -17,14 +17,14 @@ import { User } from '../../models/user';
 @Component
 export default class UserPoints extends Vue {
 
+  userModule = getModule(UserModule);
+
   async mounted() {
-    const userModule = getModule(UserModule);
-    await userModule.getUser();
+    await this.userModule.getUser();
   }
 
   get user(): User | null {
-    const userModule = getModule(UserModule);
-    return userModule.user;
+    return this.userModule.user;
   }
 
 }
