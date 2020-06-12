@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container mx-auto px-4 mb-8 md:px-12">
-      <product-filter v-bind:renderFilters="true" v-bind:page="this.productsPaged"></product-filter>
+      <product-grid-pagination v-bind:renderFilters="true" v-bind:page="this.productsPaged"></product-grid-pagination>
       <div class="border-b mt-6"></div>
     </div>
     <app-layout-grid>
@@ -12,7 +12,7 @@
       ></product-card>
     </app-layout-grid>
     <div class="container mx-auto px-4 mb-20 md:px-12">
-      <product-filter v-bind:page="this.productsPaged"></product-filter>
+      <product-grid-pagination v-bind:page="this.productsPaged"></product-grid-pagination>
       <div class="border-b mt-6"></div>
     </div>
   </div>
@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import ProductFilter from '@/components/products/product-filter.vue'
+import ProductGridPagination from '@/components/products/product-grid-pagination.vue'
 import ProductCard from '@/components/products/product-card.vue'
 import AppLayoutGrid from '@/components/base/app-layout-grid.vue'
 import { Product } from '@/models/product'
@@ -30,7 +30,7 @@ import { Page } from '../../models/page'
 
 @Component({
   components: {
-    'product-filter': ProductFilter,
+    'product-grid-pagination': ProductGridPagination,
     'product-card': ProductCard,
     'app-layout-grid': AppLayoutGrid,
   }
