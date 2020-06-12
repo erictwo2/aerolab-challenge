@@ -1,9 +1,8 @@
 <template>
   <div>
-    <div class="container mx-auto px-4 mb-8 md:px-12">
-      <product-grid-pagination v-bind:renderFilters="true" v-bind:page="this.productsPaged"></product-grid-pagination>
-      <div class="border-b mt-6"></div>
-    </div>
+    <product-grid-pagination :entityName="'products'" :page="this.productsPaged">
+      <product-grid-sorting></product-grid-sorting>
+    </product-grid-pagination>
     <app-layout-grid>
       <product-card 
         v-for="(product, index) in this.productsPaged.data"
@@ -11,16 +10,14 @@
         v-bind:product="product"
       ></product-card>
     </app-layout-grid>
-    <div class="container mx-auto px-4 mb-20 md:px-12">
-      <product-grid-pagination v-bind:page="this.productsPaged"></product-grid-pagination>
-      <div class="border-b mt-6"></div>
-    </div>
+    <product-grid-pagination :entityName="'products'" :page="this.productsPaged"></product-grid-pagination>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import ProductGridPagination from '@/components/products/product-grid-pagination.vue'
+import ProductGridSorting from '~/components/products/product-grid-sorting.vue'
 import ProductCard from '@/components/products/product-card.vue'
 import AppLayoutGrid from '@/components/base/app-layout-grid.vue'
 import { Product } from '@/models/product'
@@ -33,6 +30,7 @@ import { Page } from '../../models/page'
     'product-grid-pagination': ProductGridPagination,
     'product-card': ProductCard,
     'app-layout-grid': AppLayoutGrid,
+    'product-grid-sorting': ProductGridSorting
   }
 })
 export default class ProductGrid extends Vue {
