@@ -1,8 +1,8 @@
 <template>
   <div>
-    <product-grid-pagination :entityName="'products'" :page="this.productsPaged">
+    <app-layout-grid-pagination :entityName="'products'" :page="this.productsPaged">
       <product-grid-sorting></product-grid-sorting>
-    </product-grid-pagination>
+    </app-layout-grid-pagination>
     <app-layout-grid>
       <product-card 
         v-for="(product, index) in this.productsPaged.data"
@@ -10,16 +10,16 @@
         v-bind:product="product"
       ></product-card>
     </app-layout-grid>
-    <product-grid-pagination :entityName="'products'" :page="this.productsPaged"></product-grid-pagination>
+    <app-layout-grid-pagination :entityName="'products'" :page="this.productsPaged"></app-layout-grid-pagination>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import ProductGridPagination from '@/components/products/product-grid-pagination.vue'
+import AppLayoutGrid from '@/components/base/app-layout-grid.vue'
+import AppLayoutGridPagination from '@/components/base/app-layout-grid-pagination.vue'
 import ProductGridSorting from '~/components/products/product-grid-sorting.vue'
 import ProductCard from '@/components/products/product-card.vue'
-import AppLayoutGrid from '@/components/base/app-layout-grid.vue'
 import { Product } from '@/models/product'
 import { getModule } from 'vuex-module-decorators'
 import ProductModule from '@/store/modules/product-module'
@@ -27,9 +27,9 @@ import { Page } from '../../models/page'
 
 @Component({
   components: {
-    'product-grid-pagination': ProductGridPagination,
-    'product-card': ProductCard,
     'app-layout-grid': AppLayoutGrid,
+    'app-layout-grid-pagination': AppLayoutGridPagination,
+    'product-card': ProductCard,
     'product-grid-sorting': ProductGridSorting
   }
 })
