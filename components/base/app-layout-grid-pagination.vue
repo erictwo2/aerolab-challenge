@@ -22,11 +22,10 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Product } from '@/models/product'
 import { Page } from '../../models/page'
 
 @Component
-export default class ProductGridPagination extends Vue {
+export default class AppLayoutGridPagination extends Vue {
 
   @Prop({ type: Object, required: true }) readonly page!: Page<any>
   @Prop({ type: String, required: true }) readonly entityName!: String
