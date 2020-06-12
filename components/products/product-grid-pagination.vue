@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-wrap md:flex-no-wrap items-center justify-between mx-auto mt-16">
     <div class="flex flex-no-wrap items-center">
-      <span class="text-primary-font text-2xl font-normal tracking-tight mr-3">{{ page.size * page.currentPage }} of {{ page.total }} products</span>
+      <span class="text-primary-font text-2xl font-normal tracking-tight mr-3">
+        {{ page.size * page.currentPage }} of {{ page.total }} products
+      </span>
       <div v-if="renderFilters" class="flex flex-no-wrap items-center">
         <div class="border-l w-1 mx-6 h-12"></div>
         <span class="text-secondary-font text-2xl font-normal tracking-tight mr-3">Sort by:</span>
