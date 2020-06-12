@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'product-filter-button',
+    name: 'product-sort-button',
     props: ['label']
   }
 </script>
