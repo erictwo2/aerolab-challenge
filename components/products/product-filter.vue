@@ -21,20 +21,6 @@
 </template>
 
 <script lang="ts">
-/*
-export default Vue.extend({
-  name: 'product-filter',
-  props: {
-    renderFilters: {
-      type: Boolean,
-      default: false
-    }
-  },
-  components: {
-    'product-sort-button': ProductSortButton
-  }
-})
-*/
 
 import ProductSortButton from '~/components/products/product-sort-button.vue'
 import { Vue, Component, Prop } from 'vue-property-decorator'
