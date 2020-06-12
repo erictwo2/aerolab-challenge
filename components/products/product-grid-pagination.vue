@@ -32,7 +32,7 @@ import { Page } from '../../models/page'
     'product-sort-button': ProductSortButton
   }
 })
-export default class ProductFilter extends Vue {
+export default class ProductGridPagination extends Vue {
 
   @Prop({ type: Object, required: true }) readonly page!: Page<any>
   @Prop({ type: Boolean, default: false }) readonly renderFilters!: Boolean
