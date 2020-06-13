@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator'
+import { Vue, Component, Watch, Prop } from 'vue-property-decorator'
 import AppLayoutGrid from '@/components/base/app-layout-grid.vue'
 import AppLayoutGridPagination from '@/components/base/app-layout-grid-pagination.vue'
 import ProductGridSorting from '~/components/products/product-grid-sorting.vue'
@@ -36,6 +36,7 @@ import { Page } from '../../models/page'
 })
 export default class ProductGrid extends Vue {
 
+  @Prop({ type: Number, required: true }) readonly sizePerPage!: number;
   productModule = getModule(ProductModule);
 
   get page(): Page<Product> {
@@ -46,7 +47,7 @@ export default class ProductGrid extends Vue {
   async onUrlChange(newVal: any) {
 
     let page: number = newVal.query.page ? Number(newVal.query.page) : 1;
-    let size: number = newVal.query.size ? Number(newVal.query.size) : 16;
+    let size: number = newVal.query.size ? Number(newVal.query.size) : this.sizePerPage;
     let sortField: string = newVal.query.sortField ? newVal.query.sortField.toString() : undefined;
     let sortDirection: string = newVal.query.sortDirection ? newVal.query.sortDirection.toString() : undefined;
 
