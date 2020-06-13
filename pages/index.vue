@@ -4,7 +4,7 @@
       <user-points></user-points>
     </the-header>
     <the-subheader title="Electronics"></the-subheader>
-    <product-grid></product-grid>
+    <product-grid :sizePerPage="16"></product-grid>
   </div>
 </template>
 
@@ -23,7 +23,5 @@ import UserPoints from '@/components/user/user-points.vue'
     'user-points': UserPoints
   }
 })
-export default class ProductPage extends Vue {
-
-}
+export default class ProductPage extends Vue { }
 </script>
