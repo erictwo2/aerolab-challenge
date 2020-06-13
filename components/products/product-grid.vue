@@ -4,12 +4,14 @@
       <template slot="sorting">
         <product-grid-sorting :page="this.page"></product-grid-sorting>
       </template>
-      <template slot="content">
+      <template v-if="page.data.length == 0" slot="content">
+        <product-card-skeleton v-for="n in 16" :key="n"></product-card-skeleton>
+      </template>
+      <template v-if="page.data.length > 0" slot="content">
         <product-card
-          slot:content
           v-for="(product, index) in this.page.data"
-          v-bind:key="index"
-          v-bind:product="product"
+          :key="index"
+          :product="product"
         ></product-card>
       </template>
     </app-layout-grid>
@@ -22,6 +24,7 @@ import AppLayoutGrid from '@/components/base/app-layout-grid.vue'
 import AppLayoutGridPagination from '@/components/base/app-layout-grid-pagination.vue'
 import ProductGridSorting from '~/components/products/product-grid-sorting.vue'
 import ProductCard from '@/components/products/product-card.vue'
+import ProductCardSkeleton from '@/components/products/product-card-skeleton.vue'
 import { Product } from '@/models/product'
 import { getModule } from 'vuex-module-decorators'
 import ProductModule from '@/store/modules/product-module'
@@ -31,12 +34,14 @@ import { Page } from '../../models/page'
   components: {
     'app-layout-grid': AppLayoutGrid,
     'product-card': ProductCard,
+    'product-card-skeleton': ProductCardSkeleton,
     'product-grid-sorting': ProductGridSorting
   }
 })
 export default class ProductGrid extends Vue {
 
   @Prop({ type: Number, required: true }) readonly sizePerPage!: number;
+
   productModule = getModule(ProductModule);
 
   get page(): Page<Product> {
