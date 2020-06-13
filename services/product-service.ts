@@ -11,30 +11,44 @@ export class ProductService {
     return response.data;
   }
 
-  async findAllPaged(page?: number, size?: number, sortField?: string, sortOrder?: string): Promise<Page<Product>> {
-    const response: AxiosResponse<Product[]> = await axios.get(this.endpoint);
-    return this.paginate(response.data, page, size, sortField, sortOrder);
-  }
+  async findAllPaged(options: {page: number, size: number, sortField: string, sortDirection: string}): Promise<Page<Product>> {
 
-  paginate(
-    collection: Product[], 
-    currentPage: number = 1, 
-    size: number = 16, 
-    sortField: string | undefined, 
-    sortOrder: string | undefined)
-    : Page<Product> 
-  {
-    console.log(currentPage);
-    const offset = (currentPage - 1) * size;
-    const data = collection.slice(offset, offset + size);
-    const totalPages = Math.ceil(collection.length / size);
+    const response: AxiosResponse<Product[]> = await axios.get(this.endpoint);
+    let collection: Product[] = response.data;
+
+    let sortingUrl = null;
+    if (options && options.sortField) {
+      let sort = options && options.sortDirection && options.sortDirection == 'DESC' ? -1 : 1;
+      let key: keyof Product = options.sortField;
+      collection = collection.sort((a, b) => (a[key] > b[key]) ? sort : sort * -1);
+
+      sortingUrl = '&sortField=' + key + '&sortDirection=' + (sort == -1 ? 'DESC' : 'ASC');
+    }
+
+    const offset = (options.page - 1) * options.size;
+    const data = collection.slice(offset, offset + options.size);
+    const totalPages = Math.ceil(collection.length / options.size);
+
+    let prevPageUrl = null;
+    if (options.page > 1) {
+      prevPageUrl = '?page=' + (options.page - 1) + '&size=' + options.size;
+      prevPageUrl += sortingUrl ? sortingUrl : '';
+    }
+
+    let nextPageUrl = null;
+    if (options.page < totalPages) {
+      nextPageUrl =  '?page=' + (options.page + 1) + '&size=' + options.size;
+      nextPageUrl += sortingUrl ? sortingUrl : '';
+    }
 
     const page: Page<Product> = {
-      prevPage: currentPage > 1 ? '?page=' + (currentPage - 1) + '&size=' + size : null,
-      nextPage: currentPage < totalPages ? '?page=' + (currentPage + 1) + '&size=' + size : null,
-      currentPage: currentPage,
-      size: size,
+      prevPage: prevPageUrl,
+      nextPage: nextPageUrl,
+      currentPage: options.page,
+      size: options.size,
       total: collection.length,
+      sortField: options.sortField,
+      sortDirection: options.sortDirection,
       data: data
     }
 

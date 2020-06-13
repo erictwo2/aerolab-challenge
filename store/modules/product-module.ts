@@ -14,13 +14,15 @@ export default class ProductModule extends VuexModule {
     currentPage: 0,
     size: 0,
     total: 0,
+    sortField: null,
+    sortDirection: null,
     data: []
   };
   service: ProductService = new ProductService();
 
   @Action({commit: 'setProducts'})
-  async findAllPaged(page?: number, size?: number, sortField?: string, sortOrder?: string): Promise<Page<Product>> {
-    return await this.service.findAllPaged(page, size, sortField, sortOrder);
+  async findAllPaged(options: {page: number, size: number, sortField: string, sortDirection: string}): Promise<Page<Product>> {
+    return await this.service.findAllPaged(options);
   }
 
   @Mutation
