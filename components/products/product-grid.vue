@@ -1,18 +1,14 @@
 <template>
   <div>
-    <app-layout-grid :entityName="'products'" :page="this.page">
+    <app-layout-grid :entityName="'products'" :page="page">
       <template slot="sorting">
-        <product-grid-sorting :page="this.page"></product-grid-sorting>
+        <product-grid-sorting :page="page"></product-grid-sorting>
       </template>
       <template v-if="page.data.length == 0" slot="content">
-        <product-card-skeleton v-for="n in 16" :key="n"></product-card-skeleton>
+        <product-card-skeleton v-for="n in sizePerPage" :key="n"></product-card-skeleton>
       </template>
       <template v-if="page.data.length > 0" slot="content">
-        <product-card
-          v-for="(product, index) in this.page.data"
-          :key="index"
-          :product="product"
-        ></product-card>
+        <product-card v-for="(product) in page.data" :key="product._id" :product="product"></product-card>
       </template>
     </app-layout-grid>
   </div>
@@ -41,23 +37,7 @@ import { Page } from '../../models/page'
 export default class ProductGrid extends Vue {
 
   @Prop({ type: Number, required: true }) readonly sizePerPage!: number;
-
-  productModule = getModule(ProductModule);
-
-  get page(): Page<Product> {
-    return this.productModule.products;
-  }
-
-  @Watch('$route', { immediate: true, deep: true })
-  async onUrlChange(newVal: any) {
-
-    let page: number = newVal.query.page ? Number(newVal.query.page) : 1;
-    let size: number = newVal.query.size ? Number(newVal.query.size) : this.sizePerPage;
-    let sortField: string = newVal.query.sortField ? newVal.query.sortField.toString() : undefined;
-    let sortDirection: string = newVal.query.sortDirection ? newVal.query.sortDirection.toString() : undefined;
-
-    this.productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
-  }
+  @Prop({ type: Object, required: true }) readonly page!: Page<any>;
 
 }
 </script>
