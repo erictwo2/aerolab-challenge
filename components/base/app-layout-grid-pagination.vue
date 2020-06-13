@@ -5,7 +5,7 @@
         <span class="text-primary-font text-2xl font-normal tracking-tight mr-3">
           {{ page.size * page.currentPage }} of {{ page.total }} {{ entityName }}
         </span>
-        <slot></slot>
+        <slot name="sorting"></slot>
       </div>
       <div class="flex items-center">
         <a v-if="page.prevPage" v-bind:href="page.prevPage" class="cursor-pointer">
