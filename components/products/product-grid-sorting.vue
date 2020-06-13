@@ -17,15 +17,12 @@
 <script lang="ts">
 import { Vue, Component, PropSync, Prop } from 'vue-property-decorator'
 import { Page } from '../../models/page';
-import { getModule } from 'vuex-module-decorators';
-import ProductModule from '../../store/modules/product-module';
 
 @Component
 export default class ProductGridSorting extends Vue {
 
-  @Prop({ type: Object, required: true }) readonly page!: Page<any>
+  @Prop({ type: Object, required: true }) readonly page!: Page<any>;
 
-  productModule = getModule(ProductModule);
   active = 'rounded-full h-12 px-6 pt-1 pb-3 mx-3 text-2xl tracking-tight bg-gray-200 cursor-pointer bg-active text-white';
   inactive = 'rounded-full h-12 px-6 pt-1 pb-3 mx-3 text-2xl text-secondary-font tracking-tight bg-gray-200 cursor-pointer';
 
@@ -37,13 +34,13 @@ export default class ProductGridSorting extends Vue {
       highestPriceClass: this.inactive,
     };
 
-    if (this.productModule.products.sortField == 'cost' && this.productModule.products.sortDirection == 'ASC') {
+    if (this.page.sortField == 'cost' && this.page.sortDirection == 'ASC') {
       links.mostRecentClass = this.inactive;
       links.lowestPriceClass = this.active;
       links.highestPriceClass = this.inactive;
     }
 
-    if (this.productModule.products.sortField == 'cost' && this.productModule.products.sortDirection == 'DESC') {
+    if (this.page.sortField == 'cost' && this.page.sortDirection == 'DESC') {
       links.mostRecentClass = this.inactive;
       links.lowestPriceClass = this.inactive;
       links.highestPriceClass = this.active;
