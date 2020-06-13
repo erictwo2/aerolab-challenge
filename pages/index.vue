@@ -23,7 +23,5 @@ import UserPoints from '@/components/user/user-points.vue'
     'user-points': UserPoints
   }
 })
-export default class ProductPage extends Vue {
-
-}
+export default class ProductPage extends Vue { }
 </script>
