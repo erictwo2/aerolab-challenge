@@ -1,5 +1,5 @@
 <template>
-  <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
+  <div class="my-4 px-0 w-full md:w-1/2 md:my-4 md:px-4 lg:w-1/3 xl:w-1/4">
     <article class="overflow-hidden rounded-sm shadow-md border border-gray-200">
       <div class="static">
         <div class="relative mt-3 mx-3">
