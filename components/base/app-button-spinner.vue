@@ -6,8 +6,8 @@
     <div v-if="isLoading" class="rounded-full h-12 w-12 px-3 pt-3 bg-gray-200">
       <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-400 h-6 w-6"></div>
     </div>
-    <img v-if="success" class="h-12 w-12" src="~/assets/check.svg">
-    <img v-if="error" class="h-12 w-12" src="~/assets/error.svg">
+    <img v-if="success" class="h-12 w-12" src="~/assets/icons/check.svg">
+    <img v-if="error" class="h-12 w-12" src="~/assets/icons/error.svg">
   </div>
 </template>
 
