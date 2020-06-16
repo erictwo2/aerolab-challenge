@@ -21,14 +21,24 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import Vue, { PropOptions } from 'vue'
 import { Page } from '../../models/page'
 
-@Component
-export default class AppLayoutGridPagination extends Vue {
+export default Vue.extend({
 
-  @Prop({ type: Object, required: true }) readonly page!: Page<any>
-  @Prop({ type: String, required: true }) readonly entityName!: String
+  name: 'app-layout-grid-pagination',
 
-}
+  props: {
+    page: {
+      type: Object,
+      required: true
+    } as PropOptions<Page<any>>,
+    entityName: {
+      type: String,
+      required: true
+    } as PropOptions<String>,
+  }
+
+})
+
 </script>
