@@ -1,4 +1,4 @@
-import { Wrapper, shallowMount, RouterLinkStub, mount } from '@vue/test-utils'
+import { Wrapper, shallowMount, RouterLinkStub } from '@vue/test-utils'
 import ProductGridSorting from "@/components/products/product-grid-sorting.vue";
 import { Page } from '~/models/page';
 
