@@ -12,17 +12,32 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
+import Vue, { PropOptions } from 'vue'
 
-@Component
-export default class ProductGrid extends Vue {
+export default Vue.extend({
 
-  @Prop({ type: String, required: true }) readonly buttonLabel!: string;
-  @Prop({ type: Boolean, required: true }) readonly isLoading!: boolean;
-  @Prop({ type: Boolean, required: true }) readonly success!: boolean;
-  @Prop({ type: Boolean, required: true }) readonly error!: boolean;
+  name: 'app-button-spinner',
 
-}
+  props: {
+    buttonLabel: {
+      type: String,
+      required: true
+    } as PropOptions<String>,
+    isLoading: {
+      type: Boolean,
+      required: true
+    } as PropOptions<Boolean>,
+    success: {
+      type: Boolean,
+      required: true
+    } as PropOptions<Boolean>,
+    error: {
+      type: Boolean,
+      required: true
+    } as PropOptions<Boolean>,
+  },
+
+})
 </script>
 
 <style scoped>
