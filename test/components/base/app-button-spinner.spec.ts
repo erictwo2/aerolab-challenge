@@ -1,4 +1,4 @@
-import { Wrapper, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import AppButtonSpinner from "@/components/base/app-button-spinner.vue";
 
 describe('App Button Spinner', () => {
@@ -12,7 +12,7 @@ describe('App Button Spinner', () => {
       error: false,
     }
 
-    let wrapper: Wrapper<AppButtonSpinner> = shallowMount(AppButtonSpinner, {
+    let wrapper = shallowMount(AppButtonSpinner, {
       propsData: actualProps
     });
 
@@ -28,7 +28,7 @@ describe('App Button Spinner', () => {
       error: false,
     }
 
-    let wrapper: Wrapper<AppButtonSpinner> = shallowMount(AppButtonSpinner, {
+    let wrapper = shallowMount(AppButtonSpinner, {
       propsData: actualProps
     });
 
@@ -46,7 +46,7 @@ describe('App Button Spinner', () => {
       error: false,
     }
 
-    let wrapper: Wrapper<AppButtonSpinner> = shallowMount(AppButtonSpinner, {
+    let wrapper = shallowMount(AppButtonSpinner, {
       propsData: actualProps
     });
 
@@ -63,7 +63,7 @@ describe('App Button Spinner', () => {
       error: false,
     }
 
-    let wrapper: Wrapper<AppButtonSpinner> = shallowMount(AppButtonSpinner, {
+    let wrapper = shallowMount(AppButtonSpinner, {
       propsData: actualProps
     });
 
@@ -81,7 +81,7 @@ describe('App Button Spinner', () => {
       error: true,
     }
 
-    let wrapper: Wrapper<AppButtonSpinner> = shallowMount(AppButtonSpinner, {
+    let wrapper = shallowMount(AppButtonSpinner, {
       propsData: actualProps
     });
 

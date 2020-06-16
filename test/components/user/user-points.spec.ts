@@ -1,4 +1,4 @@
-import { Wrapper, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import UserPoints from "@/components/user/user-points.vue";
 import { Page } from '~/models/page';
 import { User } from '~/models/user';
@@ -18,7 +18,7 @@ describe('User Points', () => {
 
   test('should be created', () => {
 
-    let wrapper: Wrapper<UserPoints> = shallowMount(UserPoints, {
+    let wrapper = shallowMount(UserPoints, {
       propsData: actualProps
     });
 
@@ -27,7 +27,7 @@ describe('User Points', () => {
 
   test('username should be displayed', () => {
 
-    let wrapper: Wrapper<UserPoints> = shallowMount(UserPoints, {
+    let wrapper = shallowMount(UserPoints, {
       propsData: actualProps
     });
 
@@ -40,7 +40,7 @@ describe('User Points', () => {
 
   test('user points should be displayed', () => {
 
-    let wrapper: Wrapper<UserPoints> = shallowMount(UserPoints, {
+    let wrapper = shallowMount(UserPoints, {
       propsData: actualProps
     });
 

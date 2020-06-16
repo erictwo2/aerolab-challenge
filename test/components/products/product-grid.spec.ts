@@ -1,4 +1,4 @@
-import { Wrapper, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import ProductGrid from "@/components/products/product-grid.vue";
 import { Page } from '~/models/page';
 
@@ -21,7 +21,7 @@ describe('Product Grid', () => {
       sizePerPage: 10
     };
 
-    let wrapper: Wrapper<ProductGrid> = shallowMount(ProductGrid, {
+    let wrapper = shallowMount(ProductGrid, {
       propsData: actualProps
     });
 

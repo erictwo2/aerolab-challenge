@@ -1,4 +1,4 @@
-import { Wrapper, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import AppLayourGrid from "@/components/base/app-layout-grid.vue";
 import { Page } from '~/models/page';
 
@@ -21,7 +21,7 @@ describe('App Layout Grid', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayourGrid> = shallowMount(AppLayourGrid, {
+    let wrapper = shallowMount(AppLayourGrid, {
       propsData: actualProps
     });
 

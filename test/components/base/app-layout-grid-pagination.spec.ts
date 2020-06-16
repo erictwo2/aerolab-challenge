@@ -1,4 +1,4 @@
-import { Wrapper, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import AppLayoutGridPagination from "@/components/base/app-layout-grid-pagination.vue";
 import { Page } from '~/models/page';
 
@@ -21,7 +21,7 @@ describe('App Layout Grid Pagination', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayoutGridPagination> = shallowMount(AppLayoutGridPagination, {
+    let wrapper = shallowMount(AppLayoutGridPagination, {
       propsData: actualProps
     });
 
@@ -45,7 +45,7 @@ describe('App Layout Grid Pagination', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayoutGridPagination> = shallowMount(AppLayoutGridPagination, {
+    let wrapper = shallowMount(AppLayoutGridPagination, {
       propsData: actualProps
     });
 
@@ -71,7 +71,7 @@ describe('App Layout Grid Pagination', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayoutGridPagination> = shallowMount(AppLayoutGridPagination, {
+    let wrapper = shallowMount(AppLayoutGridPagination, {
       propsData: actualProps
     });
 
@@ -97,7 +97,7 @@ describe('App Layout Grid Pagination', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayoutGridPagination> = shallowMount(AppLayoutGridPagination, {
+    let wrapper = shallowMount(AppLayoutGridPagination, {
       propsData: actualProps
     });
 
@@ -122,7 +122,7 @@ describe('App Layout Grid Pagination', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayoutGridPagination> = shallowMount(AppLayoutGridPagination, {
+    let wrapper = shallowMount(AppLayoutGridPagination, {
       propsData: actualProps
     });
 
@@ -148,7 +148,7 @@ describe('App Layout Grid Pagination', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayoutGridPagination> = shallowMount(AppLayoutGridPagination, {
+    let wrapper = shallowMount(AppLayoutGridPagination, {
       propsData: actualProps
     });
 
@@ -173,7 +173,7 @@ describe('App Layout Grid Pagination', () => {
       entityName: 'products'
     }
 
-    let wrapper: Wrapper<AppLayoutGridPagination> = shallowMount(AppLayoutGridPagination, {
+    let wrapper = shallowMount(AppLayoutGridPagination, {
       propsData: actualProps
     });
 
