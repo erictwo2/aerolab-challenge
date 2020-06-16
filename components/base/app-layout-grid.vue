@@ -15,19 +15,28 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import Vue, { PropOptions } from 'vue'
+import { Page } from '@/models/page'
 import AppLayoutGridPagination from '@/components/base/app-layout-grid-pagination.vue'
-import { Page } from '../../models/page'
 
-@Component({
+export default Vue.extend({
+
+  name: 'app-layout-grid',
+
   components: {
-    'app-layout-grid-pagination': AppLayoutGridPagination,
+    'app-layout-grid-pagination': AppLayoutGridPagination
+  },
+
+  props: {
+    page: {
+      type: Object,
+      required: true
+    } as PropOptions<Page<any>>,
+    entityName: {
+      type: String,
+      required: true
+    } as PropOptions<String>,
   }
+
 })
-export default class AppLayoutGrid extends Vue {
-
-  @Prop({ type: Object, required: true }) readonly page!: Page<any>
-  @Prop({ type: String, required: true }) readonly entityName!: String
-
- }
 </script>

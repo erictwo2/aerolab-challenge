@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from 'vue'
-import { Page } from '../../models/page'
+import { Page } from '@/models/page'
 
 export default Vue.extend({
 
@@ -40,5 +40,4 @@ export default Vue.extend({
   }
 
 })
-
 </script>
