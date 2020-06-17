@@ -9,65 +9,58 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Page } from '@/models/page'
 import { Product } from '@/models/product'
 
-export default Vue.extend({
+@Component
+export default class ProductGridSorting extends Vue {
 
-  name: 'product-grid-sorting',
+  @Prop({ type: Object, required: false }) readonly page!: Page<Product>
 
-  props: {
-    page: {
-      type: Object,
-      required: false
-    } as PropOptions<Page<Product>>
-  },
+  get links() {
 
-  computed: {
-    links: function () {
-
-      let active = 'rounded-full h-12 pt-3 sm:pt-1 md:pt-1 px-2 sm:px-3 lg:px-4 xl:px-6 mr-1 xs:mr-2 sm:mr-2 md:mr-4 xl:mr-6 ' 
+    let active = 'rounded-full h-12 pt-3 sm:pt-1 md:pt-1 px-2 sm:px-3 lg:px-4 xl:px-6 mr-1 xs:mr-2 sm:mr-2 md:mr-4 xl:mr-6 ' 
         + 'text-md sm:text-2xl md:text-2xl tracking-tight bg-gray-200 cursor-pointer bg-active text-white';
-      let inactive = 'rounded-full h-12 pt-3 sm:pt-1 md:pt-1 px-2 sm:px-3 lg:px-4 xl:px-6 mr-1 xs:mr-2 sm:mr-2 md:mr-4 xl:mr-6 '
-        +'text-md sm:text-2xl md:text-2xl text-secondary-font tracking-tight bg-gray-200 cursor-pointer';
+    let inactive = 'rounded-full h-12 pt-3 sm:pt-1 md:pt-1 px-2 sm:px-3 lg:px-4 xl:px-6 mr-1 xs:mr-2 sm:mr-2 md:mr-4 xl:mr-6 '
+      +'text-md sm:text-2xl md:text-2xl text-secondary-font tracking-tight bg-gray-200 cursor-pointer';
 
-      let links = {
-        mostRecentClass: active,
-        lowestPriceClass: inactive,
-        highestPriceClass: inactive,
-      };
+    let links = {
+      mostRecentClass: active,
+      lowestPriceClass: inactive,
+      highestPriceClass: inactive,
+    };
 
-      if (this.page && this.page.sortField == 'cost' && this.page.sortDirection == 'ASC') {
-        links.mostRecentClass = inactive;
-        links.lowestPriceClass = active;
-        links.highestPriceClass = inactive;
-      }
-
-      if (this.page.sortField == 'cost' && this.page.sortDirection == 'DESC') {
-        links.mostRecentClass = inactive;
-        links.lowestPriceClass = inactive;
-        links.highestPriceClass = active;
-      }
-
-      return links;
+    if (this.page && this.page.sortField == 'cost' && this.page.sortDirection == 'ASC') {
+      links.mostRecentClass = inactive;
+      links.lowestPriceClass = active;
+      links.highestPriceClass = inactive;
     }
-  },
 
-  methods: {
-    mostRecentClass() {
-      this.page.sortField = null;
-      this.page.sortDirection = null;
-    },
-    lowestPriceClass() {
-      this.page.sortField = 'cost';
-      this.page.sortDirection = 'ASC';
-    },
-    highestPriceClass() {
-      this.page.sortField = 'cost';
-      this.page.sortDirection = 'DESC';
+    if (this.page.sortField == 'cost' && this.page.sortDirection == 'DESC') {
+      links.mostRecentClass = inactive;
+      links.lowestPriceClass = inactive;
+      links.highestPriceClass = active;
     }
+
+    return links;
   }
 
-})
+  mostRecentClass() {
+    this.page.sortField = null;
+    this.page.sortDirection = null;
+  }
+
+  lowestPriceClass() {
+    this.page.sortField = 'cost';
+    this.page.sortDirection = 'ASC';
+  }
+
+
+  highestPriceClass() {
+    this.page.sortField = 'cost';
+    this.page.sortDirection = 'DESC';
+  }
+
+}
 </script>

@@ -49,84 +49,74 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import AppButtonSpinner from '@/components/base/app-button-spinner.vue'
 import { Product } from '@/models/product'
 import UserModule from '@/store/modules/user-module';
 import { getModule } from 'vuex-module-decorators';
 import RedeemModule from '../../store/modules/redeem-module';
 
-export default Vue.extend({
-
-  name: 'product-card',
-
+@Component({
   components: {
     'app-button-spinner': AppButtonSpinner
-  },
+  }
+})
+export default class ProductCard extends Vue { 
 
-  data: function() {
-    return {
-      hover: false,
-      redeemIsLoading: false,
-      redeemSuccess: false,
-      redeemError: false,
-    };
-  },
+  @Prop({ type: Object, required: true }) readonly product!: Product
 
-  props: {
-    product: {
-      type: Object,
-      required: true
-    } as PropOptions<Product>
-  },
+  hover = false;
+  redeemIsLoading = false;
+  redeemSuccess = false;
+  redeemError = false;
 
-  computed: {
-    canRedeem: function () {
-      let userModule = getModule(UserModule);
-      return userModule.user
-        ? (userModule.user.points - (this.product as Product).cost)
-        : null;
-    }
-  },
+  get canRedeem () {
+    let userModule = getModule(UserModule);
+    return userModule.user
+      ? (userModule.user.points - this.product.cost)
+      : null;
+  }
 
-  methods: {
-    async redeemProduct() {
-      let userModule = getModule(UserModule);
-      let redeemModule = getModule(RedeemModule);
-      try {
-        this.$data.redeemIsLoading = true;
-        await redeemModule.redeemProduct(this.$props.product._id);
-        this.$data.redeemIsLoading = false;
-        this.$data.redeemSuccess = true;
+  async redeemProduct() {
 
-        let counter = 3;
-        let intervalId = setInterval(() => {
-          counter = counter - 1;
-          if(counter === 0) {
-            this.$data.redeemSuccess = false;
-            clearInterval(intervalId)
-          }
-        }, 1000)
+    let userModule = getModule(UserModule);
+    let redeemModule = getModule(RedeemModule);
 
-        await userModule.getUser();
-      } catch (error) {
+    try {
 
-        this.$data.redeemIsLoading = false;
-        this.$data.redeemError = true;
+      this.redeemIsLoading = true;
+      await redeemModule.redeemProduct(this.product._id);
+      this.redeemIsLoading = false;
+      this.redeemSuccess = true;
 
-        let counter = 3;
-        let intervalId = setInterval(() => {
-          counter = counter - 1;
-          if(counter === 0) {
-            this.$data.redeemError = false;
-            clearInterval(intervalId);
-          }
-        }, 1000)
-      }
+      let counter = 3;
+      let intervalId = setInterval(() => {
+        counter = counter - 1;
+        if(counter === 0) {
+          this.redeemSuccess = false;
+          clearInterval(intervalId)
+        }
+      }, 1000)
+
+      await userModule.getUser();
+
+    } catch (error) {
+
+      this.redeemIsLoading = false;
+      this.redeemError = true;
+
+      let counter = 3;
+      let intervalId = setInterval(() => {
+        counter = counter - 1;
+        if(counter === 0) {
+          this.redeemError = false;
+          clearInterval(intervalId);
+        }
+      }, 1000)
     }
   }
 
-})
+}
 </script>
 
 <style scoped>
