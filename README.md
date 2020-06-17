@@ -28,11 +28,11 @@ Los usuarios tienen una cantidad indeterminada de puntos acumulados, y cada prod
  Para desplegar de manera local se necesitan ejecutar los siguientes comandos:
  
 ```bash
-    # install dependencies
-    $ npm install
+# install dependencies
+$ npm install
 
-	# serve with hot reload at localhost:3000
-    $ npm run dev
+# serve with hot reload at localhost:3000
+$ npm run dev
 ```
 ## Frameworks
 
