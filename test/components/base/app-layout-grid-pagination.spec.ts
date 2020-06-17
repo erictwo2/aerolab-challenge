@@ -7,9 +7,8 @@ describe('App Layout Grid Pagination', () => {
   test('should be created', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -31,9 +30,8 @@ describe('App Layout Grid Pagination', () => {
   test('should show a description for first page', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -57,9 +55,8 @@ describe('App Layout Grid Pagination', () => {
   test('should show a description for tenth page', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 10,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -80,12 +77,11 @@ describe('App Layout Grid Pagination', () => {
     expect(expectedDescription.text()).toBe('100 of 100 products');
   })
 
-  test('if prevPage is null, the button for previous page should not be shown', () => {
+  test('if currentPage is 1, the button for previous page should not be shown', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
-      currentPage: 10,
+      currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -105,12 +101,11 @@ describe('App Layout Grid Pagination', () => {
     expect(expectedPrevPage.exists()).toBeFalsy();
   })
 
-  test('if prevPage is not empty, the button on the previous page should show', () => {
+  test('if currentPage is greater than 1, the button on the previous page should show', () => {
 
     let page: Page<any> = {
-      prevPage: '?page=9&size=10',
-      nextPage: null,
       currentPage: 10,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -133,9 +128,8 @@ describe('App Layout Grid Pagination', () => {
   test('if you click on the prevPage, currentPage should decrease', () => {
 
     let page: Page<any> = {
-      prevPage: '?page=9&size=10',
-      nextPage: null,
       currentPage: 10,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -156,12 +150,11 @@ describe('App Layout Grid Pagination', () => {
     expect(page.currentPage).toBe(9);
   })
 
-  test('if nextPage is null, the button for next page should not be shown', () => {
+  test('if currentPage is 10, the button for next page should not be shown', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
-      currentPage: 5,
+      currentPage: 10,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -181,12 +174,11 @@ describe('App Layout Grid Pagination', () => {
     expect(expectedNextPage.exists()).toBeFalsy();
   })
 
-  test('if nextPage is not empty, the button on the next page should show', () => {
+  test('if currentPage is less than 10, the button on the next page should show', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: '?page=6&size=10',
       currentPage: 5,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -209,9 +201,8 @@ describe('App Layout Grid Pagination', () => {
   test('if you click on the prevPage, currentPage should increase', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: '?page=6&size=10',
       currentPage: 5,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,

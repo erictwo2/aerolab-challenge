@@ -7,9 +7,8 @@ describe('App Layout Grid', () => {
   test('should be created', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,

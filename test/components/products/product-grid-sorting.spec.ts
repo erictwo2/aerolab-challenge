@@ -7,9 +7,8 @@ describe('Product Grid Sorting', () => {
   test('should be created', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -30,9 +29,8 @@ describe('Product Grid Sorting', () => {
   test('should have 3 filters', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -55,9 +53,8 @@ describe('Product Grid Sorting', () => {
   test('button to order by most recent should be active', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -78,9 +75,8 @@ describe('Product Grid Sorting', () => {
   test('button to order by lowest price should be active', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: 'cost',
@@ -101,9 +97,8 @@ describe('Product Grid Sorting', () => {
   test('button to order by highest price should be active', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: 'cost',
@@ -124,9 +119,8 @@ describe('Product Grid Sorting', () => {
   test('if you click on the most recent button, sort field and direction should be null', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: 'cost',
@@ -150,9 +144,8 @@ describe('Product Grid Sorting', () => {
   test('if you click on the lowest price button, sort field and direction should have the values cost and ASC', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
@@ -176,9 +169,8 @@ describe('Product Grid Sorting', () => {
   test('if you click on the highest price button, sort field and direction should have the values cost and DESC', () => {
 
     let page: Page<any> = {
-      prevPage: null,
-      nextPage: null,
       currentPage: 1,
+      totalPages: 10,
       size: 10,
       total: 100,
       sortField: null,
