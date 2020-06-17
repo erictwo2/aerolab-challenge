@@ -10,9 +10,8 @@ export class ProductService {
     let collection: Product[] = response.data;
 
     if (options && options.sortField) {
-      let sort = options && options.sortDirection && options.sortDirection == 'DESC' ? -1 : 1;
-      let key: keyof Product = options.sortField;
-      collection = collection.sort((a, b) => (a[key] > b[key]) ? sort : sort * -1);
+      let sort = options.sortDirection && options.sortDirection == 'DESC' ? -1 : 1;
+      collection = collection.sort((a, b) => ((a as any)[options.sortField] > (b as any)[options.sortField]) ? sort : sort * -1);
     }
 
     const offset = (options.page - 1) * options.size;
