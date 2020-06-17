@@ -8,7 +8,7 @@ import { store } from "..";
 export default class UserModule extends VuexModule {
 
   user: User | null = null;
-  service: UserService = new UserService();
+  private service: UserService = new UserService();
 
   @Action({commit: 'setUser'})
   async getUser(): Promise<User> {

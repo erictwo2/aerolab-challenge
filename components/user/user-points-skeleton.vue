@@ -9,14 +9,17 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import Vue from 'vue'
 // @ts-ignore
 import SkeletonLoaderVue from 'skeleton-loader-vue'
 
-@Component({
+export default Vue.extend({
+
+  name: 'user-points-skeleton',
+
   components: {
     'skeleton-loader-vue': SkeletonLoaderVue
   }
+
 })
-export default class UserPointsSkeleton extends Vue { }
 </script>

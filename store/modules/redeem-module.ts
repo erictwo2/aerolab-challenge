@@ -7,7 +7,7 @@ import { RedeemService } from "~/services/redeem-service";
 export default class RedeemModule extends VuexModule {
 
   reedemResult: string | null = null;
-  service: RedeemService = new RedeemService();
+  private service: RedeemService = new RedeemService();
 
   @Action({commit: 'setRedeemResult'})
   async redeemProduct(productId: string): Promise<String> {

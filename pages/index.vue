@@ -4,13 +4,13 @@
       <user-points v-if="user" :user="user"></user-points>
       <user-points-skeleton v-if="!user"></user-points-skeleton>
     </the-header>
-    <the-subheader title="Electronics"></the-subheader>
+    <the-subheader title="Electronics" :image="subheaderImage"></the-subheader>
     <product-grid :page="page" :sizePerPage="sizePerPage"></product-grid>
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator'
+import Vue, { PropOptions } from 'vue'
 import TheHeader from '@/layouts/the-header.vue'
 import TheSubheader from '@/layouts/the-subheader.vue'
 import ProductGrid from '@/components/products/product-grid.vue'
@@ -23,43 +23,67 @@ import ProductModule from '../store/modules/product-module'
 import { Product } from '../models/product'
 import { Page } from '../models/page'
 
-@Component({
+const userModule = getModule(UserModule);
+const productModule = getModule(ProductModule);
+
+export default Vue.extend({
+
+  name: 'product-page',
+
   components: {
     'the-header': TheHeader,
     'the-subheader': TheSubheader,
     'product-grid': ProductGrid,
     'user-points': UserPoints,
     'user-points-skeleton': UserPointsSkeleton
-  }
+  },
+
+  data: function() {
+    return {
+      sizePerPage: 16,
+      page: null as Page<Product> | null,
+      subheaderImage: 'header-x1.png'
+    };
+  },
+
+  computed: {
+    user: function () {
+      return userModule.user;
+    },
+    watchProperties() {
+      if (!this.$data.page)
+        return null;
+      else {
+        return this.$data.page.currentPage.toString()
+          + this.$data.page.sortField 
+          + this.$data.page.sortDirection;
+      }
+    }
+  },
+
+  async mounted() {
+    await userModule.getUser();
+  },
+
+  watch: {
+    watchProperties: {
+      immediate: true,
+      handler() {
+        let page: number = this.page && this.page.currentPage ? this.page.currentPage : 1;
+        let size: number = this.page && this.page.size ? this.page.size : this.sizePerPage;
+        let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
+        let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
+
+        productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection}).then(t => this.page = t);
+        let queryParams = {};
+
+        if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
+          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString(), sortField: sortField, sortDirection: sortDirection} })
+        else
+          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString()} })
+      }
+    }
+  },
+
 })
-export default class ProductPage extends Vue {
-
-  userModule = getModule(UserModule);
-  productModule = getModule(ProductModule);
-  sizePerPage = 16;
-
-  async created() {
-    await this.userModule.getUser();
-  }
-
-  get user(): User | null {
-    return this.userModule.user;
-  }
-
-  get page(): Page<Product> {
-    return this.productModule.products;
-  }
-
-  @Watch('$route', { immediate: true, deep: true })
-  async onUrlChange(newVal: any) {
-
-    let page: number = newVal.query.page ? Number(newVal.query.page) : 1;
-    let size: number = newVal.query.size ? Number(newVal.query.size) : this.sizePerPage;
-    let sortField: string = newVal.query.sortField ? newVal.query.sortField.toString() : undefined;
-    let sortDirection: string = newVal.query.sortDirection ? newVal.query.sortDirection.toString() : undefined;
-
-    this.productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
-  }
-
- }
 </script>
