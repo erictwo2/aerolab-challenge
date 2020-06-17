@@ -8,26 +8,17 @@ import { Page } from "~/models/page";
 @Module({ name: 'productModule', store: store, dynamic: true})
 export default class ProductModule extends VuexModule {
 
-  products: Page<Product> = {
-    nextPage: null,
-    prevPage: null,
-    currentPage: 0,
-    size: 0,
-    total: 0,
-    sortField: null,
-    sortDirection: null,
-    data: []
-  };
-  service: ProductService = new ProductService();
+  page!: Page<Product>;
+  private service: ProductService = new ProductService();
 
-  @Action({commit: 'setProducts'})
+  @Action({commit: 'setPage'})
   async findAllPaged(options: {page: number, size: number, sortField: string, sortDirection: string}): Promise<Page<Product>> {
     return await this.service.findAllPaged(options);
   }
 
   @Mutation
-  public setProducts(products: Page<Product>) {
-    this.products = products;
+  public setPage(page: Page<Product>) {
+    this.page = page;
   }
 
 }

@@ -23,6 +23,9 @@ import ProductModule from '../store/modules/product-module'
 import { Product } from '../models/product'
 import { Page } from '../models/page'
 
+const userModule = getModule(UserModule);
+const productModule = getModule(ProductModule);
+
 export default Vue.extend({
 
   name: 'product-page',
@@ -38,16 +41,14 @@ export default Vue.extend({
   data: function() {
     return {
       sizePerPage: 16,
-      page: null as Page<Product> | null,
-      user: null as User | null,
+      page: productModule.page,
+      user: userModule.user,
       subheaderImage: 'header-x1.png'
     };
   },
 
   async mounted() {
-    let userModule = getModule(UserModule);
-    let productModule = getModule(ProductModule);
-    this.user = await userModule.getUser();
+    await userModule.getUser();
   },
 
   watch: {
@@ -78,7 +79,6 @@ export default Vue.extend({
       let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
       let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
 
-      let productModule = getModule(ProductModule);
       this.page = await productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
       let queryParams = {};
 
