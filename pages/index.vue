@@ -41,10 +41,24 @@ export default Vue.extend({
   data: function() {
     return {
       sizePerPage: 16,
-      page: productModule.page,
-      user: userModule.user,
+      page: null as Page<Product> | null,
       subheaderImage: 'header-x1.png'
     };
+  },
+
+  computed: {
+    user: function () {
+      return userModule.user;
+    },
+    watchProperties() {
+      if (!this.$data.page)
+        return null;
+      else {
+        return this.$data.page.currentPage.toString()
+          + this.$data.page.sortField 
+          + this.$data.page.sortDirection;
+      }
+    }
   },
 
   async mounted() {
@@ -52,42 +66,24 @@ export default Vue.extend({
   },
 
   watch: {
-    'page.currentPage': {
+    watchProperties: {
       immediate: true,
-      handler(movie) {
-        this.getPage();
-      }
-    },
-    'page.sortField': {
-      immediate: true,
-      handler(movie) {
-        this.getPage();
-      }
-    },
-    'page.sortDirection': {
-      immediate: true,
-      handler(movie) {
-        this.getPage();
-      }
-    },
-  },
+      handler() {
+        let page: number = this.page && this.page.currentPage ? this.page.currentPage : 1;
+        let size: number = this.page && this.page.size ? this.page.size : this.sizePerPage;
+        let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
+        let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
 
-  methods: {
-    async getPage() {
-      let page: number = this.page && this.page.currentPage ? this.page.currentPage : 1;
-      let size: number = this.page && this.page.size ? this.page.size : this.sizePerPage;
-      let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
-      let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
+        productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection}).then(t => this.page = t);
+        let queryParams = {};
 
-      this.page = await productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
-      let queryParams = {};
-
-      if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
-        this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString(), sortField: sortField, sortDirection: sortDirection} })
-      else
-        this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString()} })
+        if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
+          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString(), sortField: sortField, sortDirection: sortDirection} })
+        else
+          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString()} })
+      }
     }
-  }
+  },
 
 })
 </script>
