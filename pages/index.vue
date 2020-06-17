@@ -1,83 +1,89 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <app-header></app-header>
-    <div class="container">
-      <div>
-        <logo />
-        <h1 class="title">
-          aerolab-challenge
-        </h1>
-        <h2 class="text-4xl">
-          Aerolab Challenge
-        </h2>
-        <div class="links">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-            class="button--green"
-          >
-            Documentation
-          </a>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-            class="button--grey"
-          >
-            GitHub
-          </a>
-        </div>
-      </div>
-    </div>
+    <the-header>
+      <user-points v-if="user" :user="user"></user-points>
+      <user-points-skeleton v-if="!user"></user-points-skeleton>
+    </the-header>
+    <the-subheader title="Electronics" :image="subheaderImage"></the-subheader>
+    <product-grid :page="page" :sizePerPage="sizePerPage"></product-grid>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import Logo from '~/components/Logo.vue'
-import AppHeader from '~/components/AppHeader.vue'
+import Vue, { PropOptions } from 'vue'
+import TheHeader from '@/layouts/the-header.vue'
+import TheSubheader from '@/layouts/the-subheader.vue'
+import ProductGrid from '@/components/products/product-grid.vue'
+import UserPoints from '@/components/user/user-points.vue'
+import UserPointsSkeleton from '@/components/user/user-points-skeleton.vue'
+import { getModule } from 'vuex-module-decorators'
+import UserModule from '../store/modules/user-module'
+import { User } from '../models/user'
+import ProductModule from '../store/modules/product-module'
+import { Product } from '../models/product'
+import { Page } from '../models/page'
+
+const userModule = getModule(UserModule);
+const productModule = getModule(ProductModule);
 
 export default Vue.extend({
+
+  name: 'product-page',
+
   components: {
-    'logo': Logo,
-    'app-header' : AppHeader
-  }
+    'the-header': TheHeader,
+    'the-subheader': TheSubheader,
+    'product-grid': ProductGrid,
+    'user-points': UserPoints,
+    'user-points-skeleton': UserPointsSkeleton
+  },
+
+  data: function() {
+    return {
+      sizePerPage: 16,
+      page: null as Page<Product> | null,
+      subheaderImage: 'header-x1.png'
+    };
+  },
+
+  computed: {
+    user: function () {
+      return userModule.user;
+    },
+    watchProperties() {
+      if (!this.$data.page)
+        return null;
+      else {
+        return this.$data.page.currentPage.toString()
+          + this.$data.page.sortField 
+          + this.$data.page.sortDirection;
+      }
+    }
+  },
+
+  async mounted() {
+    await userModule.getUser();
+  },
+
+  watch: {
+    watchProperties: {
+      immediate: true,
+      handler() {
+        let page: number = this.page && this.page.currentPage ? this.page.currentPage : 1;
+        let size: number = this.page && this.page.size ? this.page.size : this.sizePerPage;
+        let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
+        let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
+
+        productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection}).then(t => this.page = t);
+        let queryParams = {};
+
+        if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
+          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString(), sortField: sortField, sortDirection: sortDirection} })
+        else
+          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString()} })
+      }
+    }
+  },
+
 })
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
