@@ -10,80 +10,70 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import TheHeader from '@/layouts/the-header.vue'
 import TheSubheader from '@/layouts/the-subheader.vue'
 import ProductGrid from '@/components/products/product-grid.vue'
 import UserPoints from '@/components/user/user-points.vue'
 import UserPointsSkeleton from '@/components/user/user-points-skeleton.vue'
-import { getModule } from 'vuex-module-decorators'
-import UserModule from '../store/modules/user-module'
-import { User } from '../models/user'
-import ProductModule from '../store/modules/product-module'
 import { Product } from '../models/product'
 import { Page } from '../models/page'
+import { getModule } from 'vuex-module-decorators'
+import UserModule from '../store/modules/user-module'
+import ProductModule from '../store/modules/product-module'
 
-const userModule = getModule(UserModule);
-const productModule = getModule(ProductModule);
-
-export default Vue.extend({
-
-  name: 'product-page',
-
+@Component({
   components: {
     'the-header': TheHeader,
     'the-subheader': TheSubheader,
     'product-grid': ProductGrid,
     'user-points': UserPoints,
     'user-points-skeleton': UserPointsSkeleton
-  },
+  }
+})
+export default class ProductPage extends Vue {
 
-  data: function() {
-    return {
-      sizePerPage: 16,
-      page: null as Page<Product> | null,
-      subheaderImage: 'header-x1.png'
-    };
-  },
+  userModule = getModule(UserModule);
+  productModule = getModule(ProductModule);
 
-  computed: {
-    user: function () {
-      return userModule.user;
-    },
-    watchProperties() {
-      if (!this.$data.page)
-        return null;
-      else {
-        return this.$data.page.currentPage.toString()
-          + this.$data.page.sortField 
-          + this.$data.page.sortDirection;
-      }
-    }
-  },
+  sizePerPage = 16;
+  page: Page<Product> | null = null;
+  subheaderImage = 'header-x1.png';
 
   async mounted() {
-    await userModule.getUser();
-  },
+    await this.userModule.getUser();
+  }
 
-  watch: {
-    watchProperties: {
-      immediate: true,
-      handler() {
-        let page: number = this.$data.page && this.$data.page.currentPage ? this.$data.page.currentPage : 1;
-        let size: number = this.$data.page && this.$data.page.size ? this.$data.page.size : this.$data.sizePerPage;
-        let sortField: string = this.$data.page && this.$data.page.sortField ? this.$data.page.sortField : '';
-        let sortDirection: string = this.$data.page && this.$data.page.sortDirection ? this.$data.page.sortDirection : '';
+  get user() {
+    return this.userModule.user;
+  }
 
-        productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection}).then(t => this.$data.page = t);
-        let queryParams = {};
-
-        if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
-          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString(), sortField: sortField, sortDirection: sortDirection} })
-        else
-          this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString()} })
-      }
+  get watchProperties() {
+    if (!this.page)
+      return null;
+    else {
+      return this.page.currentPage.toString()
+        + this.page.sortField 
+        + this.page.sortDirection;
     }
-  },
+  }
 
-})
+  @Watch('watchProperties', { immediate: true })
+  async onWatchPropertiesChanged(val: string, oldVal: string) {
+
+    let page: number = this.page && this.page.currentPage ? this.page.currentPage : 1;
+    let size: number = this.page && this.page.size ? this.page.size : this.sizePerPage;
+    let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
+    let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
+
+    this.page = await this.productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
+    let queryParams = {};
+
+    if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
+      this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString(), sortField: sortField, sortDirection: sortDirection} })
+    else
+      this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString()} })
+  }
+
+}
 </script>

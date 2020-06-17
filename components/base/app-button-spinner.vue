@@ -12,32 +12,18 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Page } from '@/models/page'
 
-export default Vue.extend({
+@Component
+export default class AppButtonSpinner extends Vue {
 
-  name: 'app-button-spinner',
+  @Prop({ type: String, required: true }) readonly buttonLabel!: string
+  @Prop({ type: Boolean, required: true }) readonly isLoading!: boolean
+  @Prop({ type: Boolean, required: true }) readonly success!: boolean
+  @Prop({ type: Boolean, required: true }) readonly error!: boolean
 
-  props: {
-    buttonLabel: {
-      type: String,
-      required: true
-    } as PropOptions<String>,
-    isLoading: {
-      type: Boolean,
-      required: true
-    } as PropOptions<Boolean>,
-    success: {
-      type: Boolean,
-      required: true
-    } as PropOptions<Boolean>,
-    error: {
-      type: Boolean,
-      required: true
-    } as PropOptions<Boolean>,
-  },
-
-})
+}
 </script>
 
 <style scoped>

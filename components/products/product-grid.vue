@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import AppLayoutGrid from '@/components/base/app-layout-grid.vue'
 import AppLayoutGridPagination from '@/components/base/app-layout-grid-pagination.vue'
 import ProductGridSorting from '@/components/products/product-grid-sorting.vue'
@@ -24,27 +24,18 @@ import ProductCardSkeleton from '@/components/products/product-card-skeleton.vue
 import { Product } from '@/models/product'
 import { Page } from '@/models/page'
 
-export default Vue.extend({
-
-  name: 'product-grid',
-
-  props: {
-    sizePerPage: {
-      type: Number,
-      required: true
-    } as PropOptions<Number>,
-    page: {
-      type: Object,
-      required: false
-    } as PropOptions<Page<Product>>
-  },
-
+@Component({
   components: {
     'app-layout-grid': AppLayoutGrid,
     'product-card': ProductCard,
     'product-card-skeleton': ProductCardSkeleton,
     'product-grid-sorting': ProductGridSorting
   }
-
 })
+export default class ProductGrid extends Vue { 
+
+  @Prop({ type: Number, required: true }) readonly sizePerPage!: number;
+  @Prop({ type: Object, required: false }) readonly page!: Page<Product>
+
+}
 </script>

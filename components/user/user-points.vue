@@ -9,19 +9,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
-import { User } from '../../models/user'
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { User } from '@/models/user'
 
-export default Vue.extend({
+@Component
+export default class UserPoints extends Vue {
 
-  name: 'user-points',
+  @Prop({ type: Object, required: true }) readonly user!: User
 
-  props: {
-    user: {
-      type: Object,
-      required: true
-    } as PropOptions<User>
-  }
-
-})
+}
 </script>

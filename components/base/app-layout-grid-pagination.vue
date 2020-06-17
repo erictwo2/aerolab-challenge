@@ -26,32 +26,22 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import { Page } from '@/models/page'
 
-export default Vue.extend({
+@Component
+export default class AppLayoutGridPagination extends Vue {
 
-  name: 'app-layout-grid-pagination',
+  @Prop({ type: Object, required: true }) readonly page!: Page<any>
+  @Prop({ type: String, required: true }) readonly entityName!: string
 
-  props: {
-    page: {
-      type: Object,
-      required: true
-    } as PropOptions<Page<any>>,
-    entityName: {
-      type: String,
-      required: true
-    } as PropOptions<String>,
-  },
-
-  methods: {
-    prevPage() {
-      this.page.currentPage = this.page.currentPage - 1;
-    },
-    nextPage() {
-      this.page.currentPage = this.page.currentPage + 1;
-    }
+  prevPage() {
+    this.page.currentPage = this.page.currentPage - 1;
   }
 
-})
+  nextPage() {
+    this.page.currentPage = this.page.currentPage + 1;
+  }
+
+}
 </script>
