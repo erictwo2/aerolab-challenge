@@ -11,10 +11,10 @@
       </div>
       <div class="flex items-center">
         <a id="prevPage" v-if="page.currentPage > 1" @click="prevPage" class="cursor-pointer">
-          <img src="arrow-left.svg"/>
+          <img src="~/assets/icons/arrow-left.svg"/>
         </a>
         <a id="nextPage" v-if="page.currentPage < page.totalPages" @click="nextPage" class="ml-3 cursor-pointer">
-          <img src="arrow-right.svg"/>
+          <img src="~/assets/icons/arrow-right.svg"/>
         </a>
       </div>
     </div>

@@ -6,11 +6,11 @@
     >
       <div class="static">
         <div class="relative mt-3 mx-3">
-          <img v-if="canRedeem >= 0" src="buy-blue.svg" class="absolute top-0 right-0">
+          <img v-if="canRedeem >= 0" src="~/assets/icons/buy-blue.svg" class="absolute top-0 right-0">
           <div v-if="canRedeem < 0" class="absolute top-0 right-0">
             <div class="rounded-full opacity-75 h-10 ml-4 pr-1 pl-4 items-center bg-primary-font flex">
               <span class="text-white text-sm pr-1">You need {{ canRedeem * -1}}</span>
-              <img class="pt-1 w-8 h-8" src="coin.svg"/>
+              <img class="pt-1 w-8 h-8" src="~/assets/icons/coin.svg"/>
             </div>
           </div>
           <img id="product_image" alt="Product image" class="block h-auto w-full" :src="product.img.url">
@@ -23,14 +23,14 @@
       </div>
       <div v-if="hover && canRedeem >= 0" class="bg-opacity-75 bg-active z-10 absolute top-0 left-0 w-full h-full">
         <div class="relative mt-2 mx-2">
-          <img src="buy-white.svg" class="absolute top-0 right-0">
+          <img src="~/assets/icons/buy-white.svg" class="absolute top-0 right-0">
         </div>
         <div class="absolute inset-0">
           <div class="flex h-full justify-center inline-block">
             <div class="mb-auto mt-auto">
               <div class="flex flex-no-wrap justify-center items-center mb-1">
                 <span id="product_cost" class="text-4xl text-white">{{ product.cost }}</span>
-                <img class="mt-2 ml-2" src="coin.svg">
+                <img class="mt-2 ml-2" src="~/assets/icons/coin.svg">
               </div>
               <app-button-spinner
                 @click.native="redeemProduct"
@@ -131,7 +131,6 @@ export default Vue.extend({
 
 <style scoped>
 #product_image {
-  min-width: 252px;
   min-height: 182px;
 }
 </style>
