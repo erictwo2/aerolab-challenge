@@ -6,12 +6,12 @@
       </template>
     </app-layout-grid-pagination>
     <app-layout-grid-pagination-skeleton v-if="!page"></app-layout-grid-pagination-skeleton>
-    <div class="container mx-auto px-4 md:px-12">
+    <div class="xl:mx-32 lg:mx-16 md:mx-12 sm:mx-10 mx-8">
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
         <slot name="content"></slot>
       </div>
     </div>
-    <app-layout-grid-pagination v-if="page" v-bind="$props"></app-layout-grid-pagination>
+    <app-layout-grid-pagination v-if="page" v-bind="$props" class="mt-8"></app-layout-grid-pagination>
     <app-layout-grid-pagination-skeleton v-if="!page"></app-layout-grid-pagination-skeleton>
   </div>
 </template>

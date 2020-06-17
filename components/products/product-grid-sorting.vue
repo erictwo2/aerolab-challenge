@@ -1,16 +1,10 @@
 <template>
   <div class="flex flex-no-wrap items-center">
-    <div class="border-l w-1 mx-6 h-12"></div>
-    <span class="text-secondary-font text-2xl font-normal tracking-tight mr-3">Sort by:</span>
-    <a id="mostRecent"  @click="mostRecentClass" :class="links.mostRecentClass">
-      Most recent
-    </a>
-    <a id="lowestPrice"  @click="lowestPriceClass" :class="links.lowestPriceClass">
-      Lowest price
-    </a>
-    <a id="highestPrice"  @click="highestPriceClass" :class="links.highestPriceClass">
-      Highest price
-    </a>
+    <div class="hidden lg:block lg:border-l w-1 mx-6 h-12"></div>
+    <span class="hidden lg:block text-secondary-font text-xl text-2xl tracking-tight mr-3">Sort by:</span>
+    <span id="mostRecent" @click="mostRecentClass" :class="links.mostRecentClass">Most recent</span>
+    <span id="lowestPrice" @click="lowestPriceClass" :class="links.lowestPriceClass">Lowest price</span>
+    <span id="highestPrice" @click="highestPriceClass" :class="links.highestPriceClass">Highest price</span>
   </div>
 </template>
 
@@ -33,8 +27,8 @@ export default Vue.extend({
   computed: {
     links: function () {
 
-      let active = 'rounded-full h-12 px-6 pt-1 pb-3 mx-3 text-2xl tracking-tight bg-gray-200 cursor-pointer bg-active text-white';
-      let inactive = 'rounded-full h-12 px-6 pt-1 pb-3 mx-3 text-2xl text-secondary-font tracking-tight bg-gray-200 cursor-pointer';
+      let active = 'rounded-full flex align-middle h-12 px-2 sm:px-3 lg:px-4 xl:px-6 mx-1 md:mx-2 xl:mx-3 text-md sm:text-xl md:text-2xl tracking-tight bg-gray-200 cursor-pointer bg-active text-white';
+      let inactive = 'rounded-full flex align-middle h-12 px-2 sm:px-3 lg:px-4 xl:px-6 mx-1 md:mx-2 xl:mx-3 text-md sm:text-xl md:text-2xl text-secondary-font tracking-tight bg-gray-200 cursor-pointer';
 
       let links = {
         mostRecentClass: active,

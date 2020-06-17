@@ -83,8 +83,8 @@ export default Vue.extend({
   computed: {
     canRedeem: function () {
       let userModule = getModule(UserModule);
-      return (userModule.user && this.product)
-        ? (userModule.user.points - this.product.cost)
+      return userModule.user
+        ? (userModule.user.points - (this.product as Product).cost)
         : null;
     }
   },

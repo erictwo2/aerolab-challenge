@@ -4,7 +4,7 @@
       <user-points v-if="user" :user="user"></user-points>
       <user-points-skeleton v-if="!user"></user-points-skeleton>
     </the-header>
-    <the-subheader title="Electronics"></the-subheader>
+    <the-subheader title="Electronics" :image="subheaderImage"></the-subheader>
     <product-grid :page="page" :sizePerPage="sizePerPage"></product-grid>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default Vue.extend({
       sizePerPage: 16,
       page: null as Page<Product> | null,
       user: null as User | null,
+      subheaderImage: 'header-x1.png'
     };
   },
 

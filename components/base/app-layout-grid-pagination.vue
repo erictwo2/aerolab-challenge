@@ -1,11 +1,13 @@
 <template>
-  <div class="container mx-auto px-4 mb-8 md:px-12">
-    <div class="flex flex-wrap md:flex-no-wrap items-center justify-between mx-auto mt-16">
+  <div class="xl:mx-32 lg:mx-16 md:mx-12 sm:mx-10 mx-8 mb-8">
+    <div class="flex flex-wrap md:flex-no-wrap items-center justify-between mx-auto">
       <div class="flex flex-no-wrap items-center">
-        <span id="description" class="text-primary-font text-2xl font-normal tracking-tight mr-3">
+        <span id="description" class="text-primary-font text-2xl font-normal tracking-tight md:mr-3">
           {{ page.size * page.currentPage }} of {{ page.total }} {{ entityName }}
         </span>
-        <slot name="sorting"></slot>
+        <div class="invisible w-0 lg:visible lg:w-auto">
+          <slot name="sorting"></slot>
+        </div>
       </div>
       <div class="flex items-center">
         <a id="prevPage" v-if="page.prevPage" @click="prevPage" class="cursor-pointer">
@@ -15,6 +17,9 @@
           <img src="arrow-right.svg"/>
         </a>
       </div>
+    </div>
+    <div class="flex items-center visible w-auto mt-4 lg:hidden lg:w-0 lg:h-0">
+      <slot name="sorting"></slot>
     </div>
     <div class="border-b mt-6"></div>
   </div>
