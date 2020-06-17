@@ -53,5 +53,12 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  env: {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWRhYWMzMjYwMmY2ODAwNmM4ZjczZmMiLCJpYXQiOjE1OTEzODkyMzR9.sqBmyZKGr2gwUWwb2mSv7fdQAmKeeNZ8zuQRnKKFgMk',
+    baseUrl:
+      process.env.NODE_ENV === 'dev'
+        ? 'https://private-anon-3c65b1bb3f-aerolabchallenge.apiary-proxy.com'
+        : 'https://coding-challenge-api.aerolab.co'
   }
 }
