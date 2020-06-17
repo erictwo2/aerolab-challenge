@@ -33,13 +33,5 @@ export default class AppLayoutGrid extends Vue {
   @Prop({ type: Object, required: false }) readonly page!: Page<any>
   @Prop({ type: String, required: true }) readonly entityName!: string
 
-  prevPage() {
-    this.page.currentPage = this.page.currentPage - 1;
-  }
-
-  nextPage() {
-    this.page.currentPage = this.page.currentPage + 1;
-  }
-
 }
 </script>
