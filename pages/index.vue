@@ -69,12 +69,12 @@ export default Vue.extend({
     watchProperties: {
       immediate: true,
       handler() {
-        let page: number = this.page && this.page.currentPage ? this.page.currentPage : 1;
-        let size: number = this.page && this.page.size ? this.page.size : this.sizePerPage;
-        let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
-        let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
+        let page: number = this.$data.page && this.$data.page.currentPage ? this.$data.page.currentPage : 1;
+        let size: number = this.$data.page && this.$data.page.size ? this.$data.page.size : this.$data.sizePerPage;
+        let sortField: string = this.$data.page && this.$data.page.sortField ? this.$data.page.sortField : '';
+        let sortDirection: string = this.$data.page && this.$data.page.sortDirection ? this.$data.page.sortDirection : '';
 
-        productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection}).then(t => this.page = t);
+        productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection}).then(t => this.$data.page = t);
         let queryParams = {};
 
         if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
