@@ -10,10 +10,10 @@
         </div>
       </div>
       <div class="flex items-center">
-        <a id="prevPage" v-if="page.prevPage" @click="prevPage" class="cursor-pointer">
+        <a id="prevPage" v-if="page.currentPage > 1" @click="prevPage" class="cursor-pointer">
           <img src="arrow-left.svg"/>
         </a>
-        <a id="nextPage" v-if="page.nextPage" @click="nextPage" class="ml-3 cursor-pointer">
+        <a id="nextPage" v-if="page.currentPage < page.totalPages" @click="nextPage" class="ml-3 cursor-pointer">
           <img src="arrow-right.svg"/>
         </a>
       </div>

@@ -1,7 +1,6 @@
 export interface Page<T> {
-  prevPage: string | null,
-  nextPage: string | null,
   currentPage: number,
+  totalPages: number,
   size: number,
   total: number,
   sortField: string | null,
