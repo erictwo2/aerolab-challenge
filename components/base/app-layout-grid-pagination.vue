@@ -8,10 +8,10 @@
         <slot name="sorting"></slot>
       </div>
       <div class="flex items-center">
-        <a id="prevPage" v-if="page.prevPage" v-bind:href="page.prevPage" class="cursor-pointer">
+        <a id="prevPage" v-if="page.prevPage" @click="prevPage" class="cursor-pointer">
           <img src="arrow-left.svg"/>
         </a>
-        <a id="nextPage" v-if="page.nextPage" v-bind:href="page.nextPage" class="ml-3 cursor-pointer">
+        <a id="nextPage" v-if="page.nextPage" @click="nextPage" class="ml-3 cursor-pointer">
           <img src="arrow-right.svg"/>
         </a>
       </div>
@@ -37,6 +37,15 @@ export default Vue.extend({
       type: String,
       required: true
     } as PropOptions<String>,
+  },
+
+  methods: {
+    prevPage() {
+      this.page.currentPage = this.page.currentPage - 1;
+    },
+    nextPage() {
+      this.page.currentPage = this.page.currentPage + 1;
+    }
   }
 
 })

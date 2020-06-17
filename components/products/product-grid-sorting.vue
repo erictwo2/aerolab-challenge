@@ -2,15 +2,15 @@
   <div class="flex flex-no-wrap items-center">
     <div class="border-l w-1 mx-6 h-12"></div>
     <span class="text-secondary-font text-2xl font-normal tracking-tight mr-3">Sort by:</span>
-    <n-link id="mostRecent" :to="{ path: '/', query: { page: this.page.currentPage, size: this.page.size }}" :class="links.mostRecentClass">
+    <a id="mostRecent"  @click="mostRecentClass" :class="links.mostRecentClass">
       Most recent
-    </n-link>
-    <n-link id="lowestPrice" :to="{ path: '/', query: { page: this.page.currentPage, size: this.page.size, sortField: 'cost', sortDirection: 'ASC' }}" :class="links.lowestPriceClass">
+    </a>
+    <a id="lowestPrice"  @click="lowestPriceClass" :class="links.lowestPriceClass">
       Lowest price
-    </n-link>
-    <n-link id="highestPrice" :to="{ path: '/', query: { page: this.page.currentPage, size: this.page.size, sortField: 'cost', sortDirection: 'DESC' }}" :class="links.highestPriceClass">
+    </a>
+    <a id="highestPrice"  @click="highestPriceClass" :class="links.highestPriceClass">
       Highest price
-    </n-link>
+    </a>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default Vue.extend({
   props: {
     page: {
       type: Object,
-      required: true
+      required: false
     } as PropOptions<Page<Product>>
   },
 
@@ -55,6 +55,21 @@ export default Vue.extend({
       }
 
       return links;
+    }
+  },
+
+  methods: {
+    mostRecentClass() {
+      this.page.sortField = null;
+      this.page.sortDirection = null;
+    },
+    lowestPriceClass() {
+      this.page.sortField = 'cost';
+      this.page.sortDirection = 'ASC';
+    },
+    highestPriceClass() {
+      this.page.sortField = 'cost';
+      this.page.sortDirection = 'DESC';
     }
   }
 

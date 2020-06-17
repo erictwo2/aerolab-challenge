@@ -4,10 +4,10 @@
       <template v-if="page" slot="sorting">
         <product-grid-sorting :page="page"></product-grid-sorting>
       </template>
-      <template v-if="page.data.length == 0" slot="content">
+      <template v-if="!page" slot="content">
         <product-card-skeleton v-for="n in sizePerPage" :key="n"></product-card-skeleton>
       </template>
-      <template v-if="page.data.length > 0" slot="content">
+      <template v-if="page" slot="content">
         <product-card v-for="(product) in page.data" :key="product._id" :product="product"></product-card>
       </template>
     </app-layout-grid>
@@ -35,7 +35,7 @@ export default Vue.extend({
     } as PropOptions<Number>,
     page: {
       type: Object,
-      required: true
+      required: false
     } as PropOptions<Page<Product>>
   },
 
