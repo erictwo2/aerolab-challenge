@@ -128,7 +128,32 @@ describe('App Layout Grid Pagination', () => {
 
     let expectedPrevPage = wrapper.find('#prevPage');
     expect(expectedPrevPage.exists()).toBeTruthy();
-    expect(expectedPrevPage.attributes('href')).toBe('?page=9&size=10');
+  })
+
+  test('if you click on the prevPage, currentPage should decrease', () => {
+
+    let page: Page<any> = {
+      prevPage: '?page=9&size=10',
+      nextPage: null,
+      currentPage: 10,
+      size: 10,
+      total: 100,
+      sortField: null,
+      sortDirection: null,
+      data: []
+    };
+    let actualProps = {
+      page: page,
+      entityName: 'products'
+    }
+
+    let wrapper = shallowMount(AppLayoutGridPagination, {
+      propsData: actualProps
+    });
+
+    let expectedPrevPage = wrapper.find('#prevPage');
+    expectedPrevPage.trigger('click');
+    expect(page.currentPage).toBe(9);
   })
 
   test('if nextPage is null, the button for next page should not be shown', () => {
@@ -179,7 +204,32 @@ describe('App Layout Grid Pagination', () => {
 
     let expectedNextPage = wrapper.find('#nextPage');
     expect(expectedNextPage.exists()).toBeTruthy();
-    expect(expectedNextPage.attributes('href')).toBe('?page=6&size=10');
+  })
+
+  test('if you click on the prevPage, currentPage should increase', () => {
+
+    let page: Page<any> = {
+      prevPage: null,
+      nextPage: '?page=6&size=10',
+      currentPage: 5,
+      size: 10,
+      total: 100,
+      sortField: null,
+      sortDirection: null,
+      data: []
+    };
+    let actualProps = {
+      page: page,
+      entityName: 'products'
+    }
+
+    let wrapper = shallowMount(AppLayoutGridPagination, {
+      propsData: actualProps
+    });
+
+    let expectedPrevPage = wrapper.find('#nextPage');
+    expectedPrevPage.trigger('click');
+    expect(page.currentPage).toBe(6);
   })
 
 })

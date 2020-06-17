@@ -1,4 +1,4 @@
-import { shallowMount, RouterLinkStub } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import ProductGridSorting from "@/components/products/product-grid-sorting.vue";
 import { Page } from '~/models/page';
 
@@ -21,10 +21,7 @@ describe('Product Grid Sorting', () => {
     }
 
     let wrapper = shallowMount(ProductGridSorting, {
-      propsData: actualProps,
-      stubs: {
-        'n-link': RouterLinkStub
-      }
+      propsData: actualProps
     });
 
     expect(wrapper.exists()).toBeTruthy();
@@ -47,10 +44,7 @@ describe('Product Grid Sorting', () => {
     }
 
     let wrapper = shallowMount(ProductGridSorting, {
-      propsData: actualProps,
-      stubs: {
-        'n-link': RouterLinkStub
-      }
+      propsData: actualProps
     });
 
     expect(wrapper.find('#mostRecent').text()).toBe('Most recent');
@@ -58,7 +52,7 @@ describe('Product Grid Sorting', () => {
     expect(wrapper.find('#highestPrice').text()).toBe('Highest price');
   })
 
-  test('link to order by most recent should be active', () => {
+  test('button to order by most recent should be active', () => {
 
     let page: Page<any> = {
       prevPage: null,
@@ -75,16 +69,13 @@ describe('Product Grid Sorting', () => {
     }
 
     let wrapper = shallowMount(ProductGridSorting, {
-      propsData: actualProps,
-      stubs: {
-        'n-link': RouterLinkStub
-      }
+      propsData: actualProps
     });
 
     expect((wrapper.vm as any).links.mostRecentClass).toContain('bg-active text-white');
   })
 
-  test('link to order by lowest price should be active', () => {
+  test('button to order by lowest price should be active', () => {
 
     let page: Page<any> = {
       prevPage: null,
@@ -101,16 +92,13 @@ describe('Product Grid Sorting', () => {
     }
 
     let wrapper = shallowMount(ProductGridSorting, {
-      propsData: actualProps,
-      stubs: {
-        'n-link': RouterLinkStub
-      }
+      propsData: actualProps
     });
 
     expect((wrapper.vm as any).links.lowestPriceClass).toContain('bg-active text-white');
   })
 
-  test('link to order by highest price should be active', () => {
+  test('button to order by highest price should be active', () => {
 
     let page: Page<any> = {
       prevPage: null,
@@ -127,13 +115,88 @@ describe('Product Grid Sorting', () => {
     }
 
     let wrapper = shallowMount(ProductGridSorting, {
-      propsData: actualProps,
-      stubs: {
-        'n-link': RouterLinkStub
-      }
+      propsData: actualProps
     });
 
     expect((wrapper.vm as any).links.highestPriceClass).toContain('bg-active text-white');
+  })
+
+  test('if you click on the most recent button, sort field and direction should be null', () => {
+
+    let page: Page<any> = {
+      prevPage: null,
+      nextPage: null,
+      currentPage: 1,
+      size: 10,
+      total: 100,
+      sortField: 'cost',
+      sortDirection: 'DESC',
+      data: []
+    };
+    let actualProps = {
+      page: page
+    }
+
+    let wrapper = shallowMount(ProductGridSorting, {
+      propsData: actualProps
+    });
+
+    let expectedMostRecent = wrapper.find('#mostRecent');
+    expectedMostRecent.trigger('click');
+    expect(page.sortField).toBeNull();
+    expect(page.sortDirection).toBeNull();
+  })
+
+  test('if you click on the lowest price button, sort field and direction should have the values cost and ASC', () => {
+
+    let page: Page<any> = {
+      prevPage: null,
+      nextPage: null,
+      currentPage: 1,
+      size: 10,
+      total: 100,
+      sortField: null,
+      sortDirection: null,
+      data: []
+    };
+    let actualProps = {
+      page: page
+    }
+
+    let wrapper = shallowMount(ProductGridSorting, {
+      propsData: actualProps
+    });
+
+    let expectedMostRecent = wrapper.find('#lowestPrice');
+    expectedMostRecent.trigger('click');
+    expect(page.sortField).toBe('cost');
+    expect(page.sortDirection).toBe('ASC');
+  })
+
+  test('if you click on the highest price button, sort field and direction should have the values cost and DESC', () => {
+
+    let page: Page<any> = {
+      prevPage: null,
+      nextPage: null,
+      currentPage: 1,
+      size: 10,
+      total: 100,
+      sortField: null,
+      sortDirection: null,
+      data: []
+    };
+    let actualProps = {
+      page: page
+    }
+
+    let wrapper = shallowMount(ProductGridSorting, {
+      propsData: actualProps
+    });
+
+    let expectedMostRecent = wrapper.find('#highestPrice');
+    expectedMostRecent.trigger('click');
+    expect(page.sortField).toBe('cost');
+    expect(page.sortDirection).toBe('DESC');
   })
 
 })
