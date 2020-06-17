@@ -27,8 +27,8 @@ export default Vue.extend({
   computed: {
     links: function () {
 
-      let active = 'rounded-full flex align-middle h-12 px-2 sm:px-3 lg:px-4 xl:px-6 mx-1 md:mx-2 xl:mx-3 text-md sm:text-xl md:text-2xl tracking-tight bg-gray-200 cursor-pointer bg-active text-white';
-      let inactive = 'rounded-full flex align-middle h-12 px-2 sm:px-3 lg:px-4 xl:px-6 mx-1 md:mx-2 xl:mx-3 text-md sm:text-xl md:text-2xl text-secondary-font tracking-tight bg-gray-200 cursor-pointer';
+      let active = 'rounded-full h-12 pt-3 sm:pt-1 md:pt-1 px-2 sm:px-3 lg:px-4 xl:px-6 mr-1 xs:mr-2 sm:mr-2 md:mr-4 xl:mr-6 text-md sm:text-2xl md:text-2xl tracking-tight bg-gray-200 cursor-pointer bg-active text-white';
+      let inactive = 'rounded-full h-12 pt-3 sm:pt-1 md:pt-1 px-2 sm:px-3 lg:px-4 xl:px-6 mr-1 xs:mr-2 sm:mr-2 md:mr-4 xl:mr-6 text-md sm:text-2xl md:text-2xl text-secondary-font tracking-tight bg-gray-200 cursor-pointer';
 
       let links = {
         mostRecentClass: active,

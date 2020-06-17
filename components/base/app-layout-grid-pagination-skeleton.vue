@@ -1,5 +1,5 @@
 <template>
-  <div class="xl:mx-32 lg:mx-16 md:mx-12 sm:mx-10 mx-8 mb-8">
+  <div class="xl:mx-32 lg:mx-16 md:mx-12 sm:mx-10 mx-6 mb-8">
     <div class="flex flex-wrap md:flex-no-wrap items-center justify-between mx-auto">
       <div class="flex flex-no-wrap items-center">
         <skeleton-loader-vue class="pr-2 mb-1" type="text" :width="24" :height="22" animation="fade"/>

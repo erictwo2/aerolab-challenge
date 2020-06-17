@@ -1,5 +1,5 @@
 <template>
-  <div class="xl:mx-32 lg:mx-16 md:mx-12 sm:mx-10 mx-8 mb-8">
+  <div class="xl:mx-32 lg:mx-16 md:mx-12 sm:mx-10 mx-6 mb-8">
     <div class="flex flex-wrap md:flex-no-wrap items-center justify-between mx-auto">
       <div class="flex flex-no-wrap items-center">
         <span id="description" class="text-primary-font text-2xl font-normal tracking-tight md:mr-3">
