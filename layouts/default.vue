@@ -52,4 +52,8 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+html, body {
+  max-width: 100% !important; overflow-x: hidden !important;
+}
 </style>
