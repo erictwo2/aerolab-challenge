@@ -8,7 +8,7 @@ import { Page } from "~/models/page";
 @Module({ name: 'productModule', store: store, dynamic: true})
 export default class ProductModule extends VuexModule {
 
-  page!: Page<Product>;
+  page: Page<Product> | null = null;
   private service: ProductService = new ProductService();
 
   @Action({commit: 'setPage'})
@@ -18,7 +18,13 @@ export default class ProductModule extends VuexModule {
 
   @Mutation
   public setPage(page: Page<Product>) {
-    this.page = page;
+    if (!this.page) {
+      this.page = page;
+    } else {
+      this.page.data = page.data;
+      this.page.total = page.total;
+      this.page.totalPages = page.totalPages;
+    }
   }
 
 }
