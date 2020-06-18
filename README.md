@@ -42,5 +42,6 @@ El stack tecnológico elegido es:
 * Vuex
 * NuxtJS
 * TailwindCSS
+* Vue Kinesis
 * Axios
 * Jest
