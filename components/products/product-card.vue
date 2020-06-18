@@ -3,7 +3,7 @@
   <div class="my-4 px-0 w-full md:w-1/2 md:my-4 md:px-4 lg:w-1/3 xl:w-1/4">
     <client-only>
       <kinesis-container>
-        <kinesis-element :strength="10">
+        <kinesis-element :strength="5">
           <article class="overflow-hidden rounded-sm shadow-md border border-gray-200 transition duration-500 ease-in-out transform hover:border-active hover:border-opacity-75 hover:-translate-y-4 hover:shadow-2xl"
             @mouseover="hover = true"
             @mouseleave="hover = false"
