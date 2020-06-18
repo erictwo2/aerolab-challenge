@@ -71,7 +71,7 @@ export default class ProductPage extends Vue {
 
     await this.productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
 
-    if (sortField && (sortDirection === 'ASC' || sortDirection === 'DESC'))
+    if (sortField && sortDirection)
       this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString(), sortField: sortField, sortDirection: sortDirection} })
     else
       this.$router.push({ path: '/', query: {page: page.toString(), size: size.toString()} })
