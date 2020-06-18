@@ -17,7 +17,7 @@ Los usuarios tienen una cantidad indeterminada de puntos acumulados, y cada prod
   
 ## Demo
 
- [https://aerolab-challenge-5wieismlf.vercel.app/](https://aerolab-challenge-5wieismlf.vercel.app/)
+ [https://aerolab-challenge.ehidalgo.vercel.app/](https://aerolab-challenge.ehidalgo.vercel.app/)
 
 ## Requerimientos
  Para el correcto despliegue del proyecto de manera local se necesita:
