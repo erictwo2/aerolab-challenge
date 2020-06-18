@@ -56,7 +56,6 @@ export default class ProductGridSorting extends Vue {
     this.page.sortDirection = 'ASC';
   }
 
-
   highestPriceClass() {
     this.page.sortField = 'cost';
     this.page.sortDirection = 'DESC';
