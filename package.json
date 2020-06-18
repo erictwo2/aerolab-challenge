@@ -21,6 +21,7 @@
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-class-component": "^7.2.3",
+    "vue-kinesis": "^1.1.5",
     "vue-property-decorator": "^8.4.2",
     "vuex-module-decorators": "^0.17.0"
   },
