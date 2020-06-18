@@ -37,7 +37,6 @@ export default class ProductPage extends Vue {
   productModule = getModule(ProductModule);
 
   sizePerPage = 16;
-  page: Page<Product> | null = null;
   subheaderImage = 'header-x1.png';
 
   async mounted() {
@@ -46,6 +45,10 @@ export default class ProductPage extends Vue {
 
   get user() {
     return this.userModule.user;
+  }
+
+  get page() {
+    return this.productModule.page;
   }
 
   get watchProperties() {
@@ -66,7 +69,7 @@ export default class ProductPage extends Vue {
     let sortField: string = this.page && this.page.sortField ? this.page.sortField : '';
     let sortDirection: string = this.page && this.page.sortDirection ? this.page.sortDirection : '';
 
-    this.page = await this.productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
+    await this.productModule.findAllPaged({page: page, size: size, sortField: sortField, sortDirection: sortDirection});
     let queryParams = {};
 
     if (sortField === 'cost' && (sortDirection === 'ASC' || sortDirection === 'DESC'))
