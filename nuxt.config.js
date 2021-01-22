@@ -12,10 +12,7 @@ export default {
   loading: { color: '#fff' },
   css: [],
   plugins: ['~/plugins/axios'],
-  buildModules: [
-    '@nuxt/typescript-build',
-    '@nuxtjs/tailwindcss'
-  ],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/tailwindcss'],
   modules: ['@nuxtjs/axios'],
   build: {
     extend(config, ctx) {}
