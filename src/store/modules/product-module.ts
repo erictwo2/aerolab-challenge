@@ -3,7 +3,7 @@ import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 import { Product } from "@/models/product";
 import { ProductService } from "@/services/product-service";
 import { store } from "..";
-import { Page } from "~/models/page";
+import { Page } from "@/models/page";
 
 @Module({ name: 'productModule', store: store, dynamic: true})
 export default class ProductModule extends VuexModule {

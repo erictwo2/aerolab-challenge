@@ -1,7 +1,7 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
 
-import { User } from "~/models/user";
-import { UserService } from "~/services/user-service";
+import { User } from "@/models/user";
+import { UserService } from "@/services/user-service";
 import { store } from "..";
 
 @Module({ name: 'userModule', store: store, dynamic: true})

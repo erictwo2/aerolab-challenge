@@ -1,5 +1,5 @@
-import { UserService } from "~/services/user-service"
-import { User } from "~/models/user"
+import { UserService } from "~/src/services/user-service"
+import { User } from "~/src/models/user"
 
 const actualUser: User = {
   id: '5a03638052fd231590d04eb5',

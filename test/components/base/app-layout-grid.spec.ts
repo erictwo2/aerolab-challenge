@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import AppLayourGrid from "@/components/base/app-layout-grid.vue";
-import { Page } from '~/models/page';
+import { Page } from '~/src/models/page';
 
 describe('App Layout Grid', () => {
 

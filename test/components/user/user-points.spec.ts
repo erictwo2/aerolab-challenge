@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import UserPoints from "@/components/user/user-points.vue";
-import { Page } from '~/models/page';
-import { User } from '~/models/user';
+import { Page } from '~/src/models/page';
+import { User } from '~/src/models/user';
 
 describe('User Points', () => {
 

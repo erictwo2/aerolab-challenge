@@ -1,7 +1,7 @@
 import { VuexModule, Module, Action, Mutation } from "vuex-module-decorators";
 
 import { store } from "..";
-import { RedeemService } from "~/services/redeem-service";
+import { RedeemService } from "@/services/redeem-service";
 
 @Module({ name: 'redeemModule', store: store, dynamic: true})
 export default class RedeemModule extends VuexModule {

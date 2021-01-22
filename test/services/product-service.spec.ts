@@ -1,6 +1,6 @@
-import { ProductService } from "~/services/product-service"
-import { Product } from "~/models/product"
-import { Page } from "~/models/page"
+import { ProductService } from "~/src/services/product-service"
+import { Product } from "~/src/models/product"
+import { Page } from "~/src/models/page"
 
 const actualProducts: Product[] = [
   {

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { Product } from '../models/product';
-import { Page } from '~/models/page';
+import { Page } from '~/src/models/page';
 
 export class ProductService {
 
