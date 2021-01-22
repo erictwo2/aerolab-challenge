@@ -11,10 +11,10 @@
       </div>
       <div class="flex items-center">
         <a id="prevPage" v-if="page.currentPage > 1" @click="prevPage" class="cursor-pointer">
-          <img src="~/assets/icons/arrow-left.svg"/>
+          <img src="~/assets/icons/arrow-left.svg" />
         </a>
         <a id="nextPage" v-if="page.currentPage < page.totalPages" @click="nextPage" class="ml-3 cursor-pointer">
-          <img src="~/assets/icons/arrow-right.svg"/>
+          <img src="~/assets/icons/arrow-right.svg" />
         </a>
       </div>
     </div>
@@ -26,14 +26,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Page } from '@/models/page'
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Page } from '@/models/page';
 
 @Component
 export default class AppLayoutGridPagination extends Vue {
-
-  @Prop({ type: Object, required: true }) readonly page!: Page<any>
-  @Prop({ type: String, required: true }) readonly entityName!: string
+  @Prop({ type: Object, required: true }) readonly page!: Page<any>;
+  @Prop({ type: String, required: true }) readonly entityName!: string;
 
   prevPage() {
     this.page.currentPage = this.page.currentPage - 1;
@@ -42,6 +41,5 @@ export default class AppLayoutGridPagination extends Vue {
   nextPage() {
     this.page.currentPage = this.page.currentPage + 1;
   }
-
 }
 </script>

@@ -6,8 +6,8 @@
 
 <style>
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -53,7 +53,9 @@ html {
   background-color: #35495e;
 }
 
-html, body {
-  max-width: 100% !important; overflow-x: hidden !important;
+html,
+body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 </style>

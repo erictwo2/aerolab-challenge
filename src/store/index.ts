@@ -1,3 +1,3 @@
-import Vuex from 'vuex'
+import Vuex from 'vuex';
 
-export const store = new Vuex.Store({ })
+export const store = new Vuex.Store({});

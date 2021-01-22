@@ -1,4 +1,4 @@
-import { Redeem } from "./redeem";
+import { Redeem } from './redeem';
 
 export interface User {
   id: string;

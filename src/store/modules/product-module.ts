@@ -1,18 +1,22 @@
-import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators";
+import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators';
 
-import { Product } from "@/models/product";
-import { ProductService } from "@/services/product-service";
-import { store } from "..";
-import { Page } from "@/models/page";
+import { Product } from '@/models/product';
+import { ProductService } from '@/services/product-service';
+import { store } from '..';
+import { Page } from '@/models/page';
 
-@Module({ name: 'productModule', store: store, dynamic: true})
+@Module({ name: 'productModule', store: store, dynamic: true })
 export default class ProductModule extends VuexModule {
-
   page: Page<Product> | null = null;
   private service: ProductService = new ProductService();
 
-  @Action({commit: 'setPage'})
-  async findAllPaged(options: {page: number, size: number, sortField: string, sortDirection: string}): Promise<Page<Product>> {
+  @Action({ commit: 'setPage' })
+  async findAllPaged(options: {
+    page: number;
+    size: number;
+    sortField: string;
+    sortDirection: string;
+  }): Promise<Page<Product>> {
     return await this.service.findAllPaged(options);
   }
 
@@ -26,5 +30,4 @@ export default class ProductModule extends VuexModule {
       this.page.totalPages = page.totalPages;
     }
   }
-
 }

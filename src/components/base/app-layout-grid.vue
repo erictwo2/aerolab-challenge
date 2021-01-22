@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
-import { Page } from '@/models/page'
-import AppLayoutGridPagination from '@/components/base/app-layout-grid-pagination.vue'
-import AppLayoutGridPaginationSkeleton from '@/components/base/app-layout-grid-pagination-skeleton.vue'
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import { Page } from '@/models/page';
+import AppLayoutGridPagination from '@/components/base/app-layout-grid-pagination.vue';
+import AppLayoutGridPaginationSkeleton from '@/components/base/app-layout-grid-pagination-skeleton.vue';
 
 @Component({
   components: {
@@ -29,9 +29,7 @@ import AppLayoutGridPaginationSkeleton from '@/components/base/app-layout-grid-p
   }
 })
 export default class AppLayoutGrid extends Vue {
-
-  @Prop({ type: Object, required: false }) readonly page!: Page<any>
-  @Prop({ type: String, required: true }) readonly entityName!: string
-
+  @Prop({ type: Object, required: false }) readonly page!: Page<any>;
+  @Prop({ type: String, required: true }) readonly entityName!: string;
 }
 </script>
