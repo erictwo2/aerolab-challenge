@@ -1,5 +1,3 @@
-import { join } from 'path'
-
 export default {
   mode: 'universal',
   head: {
@@ -16,7 +14,6 @@ export default {
   plugins: ['~/plugins/axios'],
   buildModules: [
     '@nuxt/typescript-build',
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss'
   ],
   modules: ['@nuxtjs/axios'],
