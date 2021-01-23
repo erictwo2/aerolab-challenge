@@ -1,4 +1,4 @@
-import { RedeemService } from "~/services/redeem-service"
+import { RedeemService } from "~/src/services/redeem-service"
 
 const actualResult = {
   "message": "You've redeem the product successfully"
