@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import ProductGridSorting from "@/components/products/product-grid-sorting.vue";
-import { Page } from '~/models/page';
+import { Page } from '~/src/models/page';
 
 describe('Product Grid Sorting', () => {
 

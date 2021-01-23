@@ -9,6 +9,7 @@
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
+    "lint": "vue-cli-service lint",
     "test": "jest"
   },
   "dependencies": {
@@ -28,10 +29,16 @@
   "devDependencies": {
     "@nuxt/typescript-build": "^0.6.0",
     "@nuxtjs/tailwindcss": "^1.0.0",
+    "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-plugin-typescript": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "@vue/eslint-config-prettier": "^3.0.3",
+    "@vue/eslint-config-typescript": "^3.0.3",
     "@vue/test-utils": "^1.0.3",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
     "ts-jest": "^25.0.0",
-    "vue-jest": "^4.0.0-0"
+    "vue-jest": "^4.0.0-0",
+    "vue-template-compiler": "^2.5.17"
   }
 }
